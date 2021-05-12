@@ -14,6 +14,10 @@
 #
 
 require 'capybara/rspec'
+require "rubygems"
+require 'selenium-webdriver'
+
+
 
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
