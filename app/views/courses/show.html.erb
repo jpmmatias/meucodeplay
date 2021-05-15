@@ -1,0 +1,13 @@
+<h1><%= @course.name %></h1>
+<dl>
+    <dt>Descrição</dt>
+    <dd><%= @course.description %></dd>
+    <dt>Preço</dt>
+    <dd><%= number_to_currency_brl @course.price %></dd>
+    <dt>Data de matríicula</dt>
+    <dd><%= @course.enrollment_deadline.strftime('%d/%m/%Y') %></dd>
+    <dt>Código</dt>
+    <dd><%= @course.code %></dd>
+</dl>
+
+<%= link_to "Voltar", :back %>
