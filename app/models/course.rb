@@ -1,7 +1,6 @@
 class Course < ApplicationRecord
 	validates :name,
 	          :code,
-	          :description,
 	          :price,
 	          presence: {
 			message: 'não pode ficar em branco',
