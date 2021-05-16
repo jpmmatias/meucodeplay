@@ -19,7 +19,7 @@ describe 'Admin registers teachers' do
 		attach_file('Foto de perfil', 'tmp/storage/teste.png')
 		click_on 'Criar professor'
 
-		expect(current_path).to eq(course_path(Teacher.last))
+		expect(current_path).to eq(teacher_path(Teacher.last))
 		expect(page).to have_content('Henrique')
 		expect(page).to have_content('Um professor de Ruby on Rails')
 		expect(page).to have_content('henrique@gmail.com')
