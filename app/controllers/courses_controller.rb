@@ -1,16 +1,30 @@
 class CoursesController < ApplicationController
-    def index
-        @courses = Course.all
-    end
-    def show
-        @course = Course.find(params[:id])
+	before_action :set_course, only: %i[show]
+	def index
+		@courses = Course.all
+	end
+	def show; end
+	def new
+		@course = Course.new
+	end
 
-    end
+	def create
+		@course = Course.new(course_params)
+		if @course.save
+			redirect_to @course
+		else
+			render :new
+		end
+	end
 
-    def create
+	private
 
-    end
-
-
-
+	def set_course
+		@course = Course.find(params[:id])
+	end
+	def course_params
+		params
+			.require(:course)
+			.permit(%i[name code description price enrollment_deadline])
+	end
 end

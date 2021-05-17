@@ -1,0 +1,24 @@
+<h1>Registrar um curso</h1>
+<%= form_with model: @course do |f| %>
+<div>
+    <%= f.label :name, "Nome" %>
+    <%= f.text_field :name%>
+</div>
+<div>
+    <%= f.label :description, "Descrição" %>
+    <%= f.text_area :description%>
+</div>
+<div>
+    <%= f.label :code, "Código" %>
+    <%= f.text_field :code%>
+</div>
+<div>
+    <%= f.label :price, "Preço" %>
+    <%= f.number_field :price%>
+</div>
+<div>
+    <%= f.label :enrollment_deadline, "Data limite de matrícula" %>
+    <%= f.date_field :enrollment_deadline %>
+</div>
+<%= f.submit "Criar curso" %>
+<% end %>
