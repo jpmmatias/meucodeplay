@@ -21,6 +21,8 @@
 /tmp/pids/*
 !/tmp/pids/
 !/tmp/pids/.keep
+!/tmp/storage
+/tmp/storage
 
 
 /public/assets
@@ -35,3 +37,4 @@
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+
