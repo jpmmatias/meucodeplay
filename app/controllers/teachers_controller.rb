@@ -1,6 +1,5 @@
 class TeachersController < ApplicationController
-	before_action :set_teacher, only: %i[show]
-	before_action :teacher_params, only: %i[create]
+	before_action :set_teacher, only: %i[show edit update destroy]
 	def index
 		@teachers = Teacher.all
 	end
@@ -9,11 +8,25 @@ class TeachersController < ApplicationController
 		@teacher = Teacher.new
 	end
 	def create
+		@teacher = Teacher.new(teacher_params)
 		if @teacher.save
 			redirect_to @teacher
 		else
 			render :new
 		end
+	end
+	def edit; end
+
+	def update
+		if @teacher.update(teacher_params)
+			redirect_to @teacher
+		else
+			render :edit
+		end
+	end
+
+	def destroy
+		@teacher.delete
 	end
 
 	private
@@ -23,9 +36,6 @@ class TeachersController < ApplicationController
 	end
 
 	def teacher_params
-		@teacher =
-			Teacher.new(
-				params.require(:teacher).permit(:name, :profile_picture, :bio, :email),
-			)
+		params.require(:teacher).permit(:name, :profile_picture, :bio, :email)
 	end
 end
