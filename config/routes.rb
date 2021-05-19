@@ -1,4 +1,7 @@
-Rails.application.routes.draw do
-  root 'home#index'
-  resources :courses, only: [:index, :show, :new, :create]
-end
+Rails
+	.application
+	.routes
+	.draw do
+		root 'home#index'
+		resources :courses
+	end

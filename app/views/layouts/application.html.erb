@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Meucodeplay</title>
+
+<head>
+    <title>Meu Code Play</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+</head>
 
-  <body>
+<body>
+    <% flash.each do |nome, mensagem| %>
+    <%= content_tag :div, mensagem, class: nome %>
+    <% end %>
     <%= yield %>
-  </body>
+</body>
+
 </html>

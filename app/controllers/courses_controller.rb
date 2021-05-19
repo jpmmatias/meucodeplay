@@ -1,9 +1,10 @@
 class CoursesController < ApplicationController
-	before_action :set_course, only: %i[show]
+	before_action :set_course, only: %i[show edit update destroy]
 	def index
 		@courses = Course.all
 	end
 	def show; end
+
 	def new
 		@course = Course.new
 	end
@@ -11,10 +12,27 @@ class CoursesController < ApplicationController
 	def create
 		@course = Course.new(course_params)
 		if @course.save
-			redirect_to @course
+			redirect_to @course, notice: 'Curso criado com sucesso'
 		else
+			flash[:error] = @course.errors.full_messages
 			render :new
 		end
+	end
+
+	def edit; end
+
+	def update
+		if @course.update(course_params)
+			redirect_to @course, notice: 'Curso editado com sucesso'
+		else
+			flash[:alert] = @course.errors.full_messages
+			render :edit
+		end
+	end
+
+	def destroy
+		Course.destroy(params[:id])
+		redirect_to courses_path, notice: 'Curso deletado com sucesso'
 	end
 
 	private

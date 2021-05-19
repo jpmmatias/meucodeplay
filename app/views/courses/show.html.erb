@@ -1,5 +1,6 @@
 <h1><%= @course.name %></h1>
 <dl>
+    <dd><%= image_tag @course.banner %></dd>
     <dt>Descrição</dt>
     <dd><%= @course.description %></dd>
     <dt>Preço</dt>
@@ -9,5 +10,6 @@
     <dt>Código</dt>
     <dd><%= @course.code %></dd>
 </dl>
-
-<%= link_to "Voltar", :back %>
+<%= link_to "Editar", [:edit, @course] %>
+<%= link_to "Deletar", @course, method:'delete' %>
+<%= link_to "Voltar", courses_path %>
