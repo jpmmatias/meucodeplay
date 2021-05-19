@@ -1,0 +1,21 @@
+<%= link_to "Registrar um Professor", new_teacher_path %>
+<% if @teachers.blank? %>
+<h1>Nenhum professor disponível</h1>
+<%end%>
+<% @teachers.each do |teacher| %>
+<h1><%= link_to teacher.name, teacher %></h1>
+<%if teacher.profile_picture %>
+<%= image_tag teacher.profile_picture if teacher.profile_picture.attached?%>
+<%end%>
+
+<p>
+    <%= teacher.email %>
+</p>
+<p>
+    <%= teacher.bio %>
+</p>
+<div><%= link_to "Deletar", teacher, method: :delete %></div>
+<div><%= link_to "Editar", edit_teacher_path(teacher) %></div>
+<%end%>
+
+<%= link_to "Voltar", :back %>

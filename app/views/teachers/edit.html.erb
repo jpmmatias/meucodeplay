@@ -1,0 +1,27 @@
+<% if @teacher.errors.any? %>
+<ul>
+    <% @teacher.errors.full_messages.each do |msg|%>
+    <li><%= msg %></li>
+    <%end%>
+</ul>
+<%end%>
+<%= form_with model: @teacher do |f| %>
+<div>
+    <%= f.label :name, "Nome" %>
+    <%= f.text_field :name, value: @teacher.name%>
+</div>
+<div>
+    <%= f.label :email, "Email" %>
+    <%= f.text_field :email, value: @teacher.email%>
+</div>
+<div>
+    <%= f.label :bio, "Bio" %>
+    <%= f.text_field :bio ,value: @teacher.bio%>
+</div>
+<div>
+    <%= f.label :profile_picture, "Foto de perfil" %>
+    <%= f.file_field :profile_picture, value: @teacher.profile_picture%>
+</div>
+<%= f.submit "Salvar" %>
+<%end%>
+<%= link_to "Cancelar", :back %>
