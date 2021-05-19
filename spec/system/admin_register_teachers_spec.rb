@@ -16,7 +16,7 @@ describe 'Admin registers teachers' do
 		fill_in 'Nome', with: 'Henrique'
 		fill_in 'Bio', with: 'Um professor de Ruby on Rails'
 		fill_in 'Email', with: 'henrique@gmail.com'
-		attach_file('Foto de perfil', 'tmp/storage/teste.png')
+		attach_file('Foto de perfil', 'spec/fixtures/teste.png')
 		click_on 'Criar professor'
 
 		expect(current_path).to eq(teacher_path(Teacher.last))
@@ -32,7 +32,7 @@ describe 'Admin registers teachers' do
 			name: 'Henrique',
 			bio: 'Um professor de Ruby on Rails',
 			email: 'henrique@gmail.com',
-			profile_picture: Rack::Test::UploadedFile.new('tmp/storage/teste.png'),
+			profile_picture: Rack::Test::UploadedFile.new('spec/fixtures/teste.png'),
 		)
 
 		visit root_path
@@ -51,7 +51,7 @@ describe 'Admin registers teachers' do
 			name: 'Henrique',
 			bio: 'Um professor de Ruby on Rails',
 			email: 'henrique@gmail.com',
-			profile_picture: Rack::Test::UploadedFile.new('tmp/storage/teste.png'),
+			profile_picture: Rack::Test::UploadedFile.new('spec/fixtures/teste.png'),
 		)
 
 		visit root_path

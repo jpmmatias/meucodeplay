@@ -7,7 +7,8 @@ describe 'Admin edit teachers information' do
 				name: 'Henrique',
 				bio: 'Um professor de Ruby on Rails',
 				email: 'henrique@gmail.com',
-				profile_picture: Rack::Test::UploadedFile.new('tmp/storage/teste.png'),
+				profile_picture:
+					Rack::Test::UploadedFile.new('spec/fixtures/teste.png'),
 			)
 
 		visit root_path
@@ -21,7 +22,8 @@ describe 'Admin edit teachers information' do
 				name: 'Henrique',
 				bio: 'Um professor de Ruby on Rails',
 				email: 'henrique@gmail.com',
-				profile_picture: Rack::Test::UploadedFile.new('tmp/storage/teste.png'),
+				profile_picture:
+					Rack::Test::UploadedFile.new('spec/fixtures/teste.png'),
 			)
 		visit root_path
 		click_on 'Professores'
@@ -29,7 +31,7 @@ describe 'Admin edit teachers information' do
 		expect(page).to have_link('Cancelar')
 		fill_in 'Nome', with: 'João'
 		fill_in 'Email', with: 'joao@gmail.com'
-		attach_file('Foto de perfil', 'tmp/storage/teste.png')
+		attach_file('Foto de perfil', 'spec/fixtures/teste.png')
 
 		click_on 'Salvar'
 

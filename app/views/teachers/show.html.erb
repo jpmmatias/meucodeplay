@@ -1,7 +1,11 @@
 <h1><%= @teacher.name %></h1>
 <dl>
+
+    <% if @teacher.profile_picture %>
     <dt>Foto de perfil</dt>
     <dd><%= image_tag @teacher.profile_picture %></dd>
+    <%end%>
+
     <dt>Bio</dt>
     <dd><%= @teacher.bio %></dd>
     <dt>Email</dt>

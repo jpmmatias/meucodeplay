@@ -1,5 +1,5 @@
 class TeachersController < ApplicationController
-	before_action :set_teacher, only: %i[show edit update destroy]
+	before_action :set_teacher, only: %i[show edit update]
 	def index
 		@teachers = Teacher.all
 	end
@@ -26,7 +26,8 @@ class TeachersController < ApplicationController
 	end
 
 	def destroy
-		@teacher.delete
+		Teacher.destroy((params[:id]))
+		redirect_to teachers_url
 	end
 
 	private
