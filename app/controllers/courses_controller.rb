@@ -14,7 +14,6 @@ class CoursesController < ApplicationController
 		if @course.save
 			redirect_to @course, notice: 'Curso criado com sucesso'
 		else
-			flash[:error] = @course.errors.full_messages
 			render :new
 		end
 	end
@@ -23,7 +22,7 @@ class CoursesController < ApplicationController
 
 	def update
 		if @course.update(course_params)
-			redirect_to @course, notice: 'Curso editado com sucesso'
+			redirect_to @course, notice: t('.success')
 		else
 			flash[:alert] = @course.errors.full_messages
 			render :edit

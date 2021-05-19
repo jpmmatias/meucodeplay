@@ -1,0 +1,56 @@
+<%= form_with model: course do |f| %>
+<div>
+    <%= f.label :name %>
+    <%= f.text_field :name%>
+    <%if course.errors.full_messages_for(:name).any? %>
+    <ul>
+        <% course.errors.full_messages_for(:name).each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+    </ul>
+    <%end%>
+</div>
+<div>
+    <%= f.label :description %>
+    <%= f.text_area :description%>
+    <%if course.errors.full_messages_for(:description).any? %>
+    <ul>
+        <% course.errors.full_messages_for(:description).each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+    </ul>
+    <%end%>
+
+</div>
+<div>
+    <%= f.label :code %>
+    <%= f.text_field :code%>
+    <%if course.errors.full_messages_for(:code).any? %>
+    <ul>
+        <% course.errors.full_messages_for(:code).each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+    </ul>
+    <%end%>
+</div>
+<div>
+    <%= f.label :price %>
+    <%= f.number_field :price%>
+    <%if course.errors.full_messages_for(:price).any? %>
+    <ul>
+        <% course.errors.full_messages_for(:price).each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+    </ul>
+    <% end %>
+</div>
+<div>
+    <%= f.label :enrollment_deadline %>
+    <%= f.date_field :enrollment_deadline %>
+</div>
+<div>
+    <%= f.label :banner %>
+    <%= f.file_field :banner %>
+</div>
+<%= f.submit button_text %>
+<% end %>

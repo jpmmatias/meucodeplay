@@ -6,7 +6,7 @@
 <% @courses.each do |course| %>
 <h1><%= link_to course.name, course %></h1>
 <p><%= course.description%></p>
-<p><%= number_to_currency_brl course.price %></p>
+<p><%= number_to_currency course.price %></p>
 <%end%>
 
 <%= link_to "Voltar", :back %>
