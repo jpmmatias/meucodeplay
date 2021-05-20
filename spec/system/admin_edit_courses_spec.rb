@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe 'admin updates courses' do
 	it 'sucessfully' do
+		teacher = Teacher.create!(name: 'Jane Doe', email: 'jane@gmail.com')
 		@course =
 			Course.create!(
 				name: 'Ruby',
@@ -9,6 +10,7 @@ describe 'admin updates courses' do
 				code: 'RUBYBASIC',
 				price: 10,
 				enrollment_deadline: '22/12/2033',
+				teacher: teacher,
 			)
 		enrollment_date = 10.days.from_now
 
@@ -30,12 +32,6 @@ describe 'admin updates courses' do
 		expect(page).to have_text('R$ 3.000,00')
 		expect(page).to have_text(enrollment_date.strftime('%d/%m/%Y'))
 
-		expect(page).to have_text('Curso editado com sucesso')
+		expect(page).to have_text('Curso atualizado com sucesso')
 	end
-
-	# it 'and fields cannot be blank' do
-	# end
-
-	# it 'and code must be unique' do
-	# end
 end

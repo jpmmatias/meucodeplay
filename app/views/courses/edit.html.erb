@@ -1,27 +1,5 @@
 <h1>Atualizar o curso</h1>
 
-<%= form_with model: @course do |f|%>
-<div>
-    <%= f.label :name, "Nome" %>
-    <%= f.text_field :name, value: @course.name%>
-</div>
-<div>
-    <%= f.label :description, "Descrição" %>
-    <%= f.text_area :description ,  value: @course.name%>
-</div>
-<div>
-    <%= f.label :code, "Código" %>
-    <%= f.text_field :code,  value: @course.code%>
-</div>
-<div>
-    <%= f.label :price, "Preço" %>
-    <%= f.number_field :price,  value: @course.price%>
-</div>
-<div>
-    <%= f.label :enrollment_deadline, "Data limite de matrícula" %>
-    <%= f.date_field :enrollment_deadline,  value: @course.enrollment_deadline %>
-</div>
-<%= f.submit "Salvar" %>
-<%end%>
+<%= render 'form', course: @course, button_text: 'Salvar' %>
 
 <%= link_to "Cancelar", course_path(@course) %>

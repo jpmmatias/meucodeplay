@@ -5,6 +5,8 @@
 
 <% @courses.each do |course| %>
 <h1><%= link_to course.name, course %></h1>
+<h2><%= course.teacher.name%></h2>
+<%= image_tag course.banner %>
 <p><%= course.description%></p>
 <p><%= number_to_currency course.price %></p>
 <%end%>

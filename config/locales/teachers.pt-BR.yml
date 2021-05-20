@@ -1,0 +1,14 @@
+---
+pt-BR:
+  teachers:
+    update:
+      success: 'Professor atualizado com sucesso'
+  activerecord:
+    models:
+      teacher: Professor
+    attributes:
+      teacher:
+        name: 'Nome'
+        email: 'Email'
+        bio: 'Biografia'
+        profile_picture: 'Foto de perfil'

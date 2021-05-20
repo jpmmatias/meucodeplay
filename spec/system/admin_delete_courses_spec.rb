@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe 'Admin deletes courses' do
 	it 'successfully' do
+		teacher = Teacher.create!(name: 'Jane Doe', email: 'jane@gmail.com')
 		@course =
 			Course.create!(
 				name: 'Ruby',
@@ -9,6 +10,7 @@ describe 'Admin deletes courses' do
 				code: 'RUBYBASIC',
 				price: 10,
 				enrollment_deadline: '22/12/2033',
+				teacher: teacher,
 			)
 
 		visit course_path(@course)

@@ -32,12 +32,14 @@ describe 'Admin registers courses' do
 	end
 
 	it 'and attributes cannot be blank' do
+		teacher = Teacher.create!(name: 'Jane Doe', email: 'jane@gmail.com')
 		Course.create!(
 			name: 'Ruby',
 			description: 'Um curso de Ruby',
 			code: 'RUBYBASIC',
 			price: 10,
 			enrollment_deadline: '22/12/2033',
+			teacher: teacher,
 		)
 
 		visit root_path
@@ -54,12 +56,14 @@ describe 'Admin registers courses' do
 	end
 
 	it 'and code must be unique' do
+		teacher = Teacher.create!(name: 'Jane Doe', email: 'jane@gmail.com')
 		Course.create!(
 			name: 'Ruby',
 			description: 'Um curso de Ruby',
 			code: 'RUBYBASIC',
 			price: 10,
 			enrollment_deadline: '22/12/2033',
+			teacher: teacher,
 		)
 
 		visit root_path

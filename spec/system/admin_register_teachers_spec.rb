@@ -60,6 +60,6 @@ describe 'Admin registers teachers' do
 		fill_in 'Email', with: 'henrique@gmail.com'
 		click_on 'Criar professor'
 
-		expect(page).to have_content('email já está em uso')
+		expect(page).to have_content('já está em uso')
 	end
 end

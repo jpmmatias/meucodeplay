@@ -1,0 +1,35 @@
+<%= form_with model: teacher do |f| %>
+<div>
+    <%= f.label :name %>
+    <%= f.text_field :name%>
+    <%if teacher.errors.full_messages_for(:name).any? %>
+    <ul>
+        <% teacher.errors.full_messages_for(:name).each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+    </ul>
+    <%end%>
+</div>
+<div>
+    <%= f.label :email %>
+    <%= f.text_field :email%>
+    <%if teacher.errors.full_messages_for(:email).any? %>
+    <ul>
+        <% teacher.errors.full_messages_for(:email).each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+    </ul>
+    <%end%>
+</div>
+<div>
+    <%= f.label :bio %>
+    <%= f.text_field :bio%>
+</div>
+<div>
+    <%= f.label :profile_picture %>
+    <%= f.file_field :profile_picture%>
+</div>
+<%= f.submit button_text %>
+
+
+<%end%>

@@ -7,6 +7,7 @@ class CoursesController < ApplicationController
 
 	def new
 		@course = Course.new
+		@teachers = Teacher.all
 	end
 
 	def create

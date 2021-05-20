@@ -21,7 +21,7 @@ describe Teacher do
 
 			teacher.valid?
 
-			expect(teacher.errors[:email]).to include('email já está em uso')
+			expect(teacher.errors[:email]).to include('já está em uso')
 		end
 	end
 end
