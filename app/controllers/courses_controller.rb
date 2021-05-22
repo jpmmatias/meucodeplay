@@ -15,11 +15,14 @@ class CoursesController < ApplicationController
 		if @course.save
 			redirect_to @course, notice: 'Curso criado com sucesso'
 		else
+			@teachers = Teacher.all
 			render :new
 		end
 	end
 
-	def edit; end
+	def edit
+		@teachers = Teacher.all
+	end
 
 	def update
 		if @course.update(course_params)
@@ -43,6 +46,6 @@ class CoursesController < ApplicationController
 	def course_params
 		params
 			.require(:course)
-			.permit(%i[name code description price enrollment_deadline])
+			.permit(%i[name code description price enrollment_deadline teacher_id])
 	end
 end

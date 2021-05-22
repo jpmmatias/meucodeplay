@@ -3,6 +3,7 @@ require 'rails_helper'
 describe 'admin updates courses' do
 	it 'sucessfully' do
 		teacher = Teacher.create!(name: 'Jane Doe', email: 'jane@gmail.com')
+		teacher2 = Teacher.create!(name: 'Henrique', email: 'henrique@gmail.com')
 		@course =
 			Course.create!(
 				name: 'Ruby',
@@ -23,6 +24,7 @@ describe 'admin updates courses' do
 		fill_in 'Código', with: 'RUBYONRAILS'
 		fill_in 'Preço', with: '3000'
 		fill_in 'Data limite de matrícula', with: enrollment_date
+		select "#{teacher2.name} - #{teacher2.email}", from: 'Professor(a)'
 
 		click_on 'Salvar'
 
@@ -31,6 +33,7 @@ describe 'admin updates courses' do
 		expect(page).to have_text('RUBYONRAILS')
 		expect(page).to have_text('R$ 3.000,00')
 		expect(page).to have_text(enrollment_date.strftime('%d/%m/%Y'))
+		expect(page).to have_text("#{teacher2.name}")
 
 		expect(page).to have_text('Curso atualizado com sucesso')
 	end

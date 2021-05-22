@@ -52,5 +52,16 @@
     <%= f.label :banner %>
     <%= f.file_field :banner %>
 </div>
+<div>
+    <%= f.label :teacher_id %>
+    <%= f.collection_select :teacher_id, teachers, :id, :display_name_and_email %>
+    <%if course.errors.full_messages_for(:teacher_id).any? %>
+    <ul>
+        <% course.errors.full_messages_for(:teacher_id).each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+    </ul>
+    <%end%>
+</div>
 <%= f.submit button_text %>
 <% end %>

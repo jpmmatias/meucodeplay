@@ -57,6 +57,7 @@ describe 'Admin view courses' do
 		click_on 'Ruby on Rails'
 
 		expect(page).to have_content('Ruby on Rails')
+		expect(page).to have_content('Jane Doe')
 		expect(page).to have_content('Um curso de Ruby on Rails')
 		expect(page).to have_content('RUBYONRAILS')
 		expect(page).to have_content('R$ 20,00')

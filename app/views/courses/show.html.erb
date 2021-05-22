@@ -3,6 +3,8 @@
     <dd><%= image_tag @course.banner %></dd>
     <dt>Descrição</dt>
     <dd><%= @course.description %></dd>
+    <dt>Professor</dt>
+    <dd><%= @course.teacher.name %></dd>
     <dt>Preço</dt>
     <dd><%= number_to_currency_brl @course.price %></dd>
     <dt>Data de matríicula</dt>

@@ -3,7 +3,7 @@ class Course < ApplicationRecord
 	belongs_to :teacher
 	has_one_attached :banner
 
-	validates :name, :code, :price, presence: true
+	validates :name, :code, :price, :teacher_id, presence: true
 	validates :code, uniqueness: true
 
 	private

@@ -8,4 +8,8 @@ class Teacher < ApplicationRecord
 			case_sensitive: false,
 			message: 'já está em uso',
 	          }
+
+	def display_name_and_email
+		"#{name} - #{email}"
+	end
 end
