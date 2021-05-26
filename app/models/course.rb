@@ -1,6 +1,7 @@
 class Course < ApplicationRecord
 	before_create :set_default_banner
 	belongs_to :teacher
+	has_many :lectures, dependent: :destroy
 	has_one_attached :banner
 
 	validates :name, :code, :price, :teacher_id, presence: true

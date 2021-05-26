@@ -3,7 +3,9 @@ class CoursesController < ApplicationController
 	def index
 		@courses = Course.all
 	end
-	def show; end
+	def show
+		@lectures = Lecture.where(course_id: @course.id)
+	end
 
 	def new
 		@course = Course.new

@@ -1,0 +1,21 @@
+---
+pt-BR:
+  lectures:
+    time:
+      zero: 'Sem duração'
+      one: '1 minuto'
+      other: '%{count} minutos'
+    create:
+      success: 'Aula cadastrada com sucesso'
+    update:
+      success: 'Aula atualizada com sucesso'
+  activerecord:
+    models:
+      lecture: Aula
+    attributes:
+      lecture:
+        name: 'Nome'
+        description: 'Descrição'
+        time: 'Duração'
+        course: 'Curso'
+        content: 'Conteúdo'

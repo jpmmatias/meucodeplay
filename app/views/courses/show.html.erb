@@ -1,4 +1,6 @@
 <h1><%= @course.name %></h1>
+<%= link_to "Editar", [:edit, @course] %>
+<%= link_to "Deletar", @course, method:'delete' %>
 <dl>
     <dd><%= image_tag @course.banner %></dd>
     <dt>Descrição</dt>
@@ -12,6 +14,21 @@
     <dt>Código</dt>
     <dd><%= @course.code %></dd>
 </dl>
-<%= link_to "Editar", [:edit, @course] %>
-<%= link_to "Deletar", @course, method:'delete' %>
+<h1>Aulas</h1>
+<%= link_to "Cadastrar uma aula", new_course_lecture_path(@course) %>
+<% if @lectures.empty? %>
+<h1>Nenhuma aula disponível</h1>
+<%else%>
+<ul>
+    <% @lectures.each do |lecture|%>
+    <li>
+        <%= link_to lecture.name, course_lecture_path(lecture) %>
+        <p><%= lecture.description%></p>
+        <p><%= t('lectures.time', count: lecture.time) %> </p>
+    </li>
+    <%end%>
+</ul>
+<% end %>
+
+
 <%= link_to "Voltar", courses_path %>

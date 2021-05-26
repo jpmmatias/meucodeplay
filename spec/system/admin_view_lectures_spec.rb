@@ -1,0 +1,126 @@
+require 'rails_helper'
+
+describe 'Admin view lectures' do
+	it 'successfully' do
+		teacher = Teacher.create!(name: 'Jane Doe', email: 'jane@gmail.com')
+
+		course =
+			Course.create!(
+				name: 'Ruby',
+				description: 'Um curso de Ruby',
+				code: 'RUBYBASIC',
+				price: 10,
+				enrollment_deadline: '22/12/2033',
+				teacher: teacher,
+			)
+
+		other_course =
+			Course.create!(
+				name: 'Rails',
+				description: 'Um curso de Rails',
+				code: 'RAILS',
+				price: 10,
+				enrollment_deadline: '22/12/2033',
+				teacher: teacher,
+			)
+
+		Lecture.create!(
+			name: 'Aula 1',
+			description: 'Introdução ao ruby',
+			time: 40,
+			content: 'Uma aula de ruby',
+			course: course,
+		)
+
+		Lecture.create!(
+			name: 'Aula 2',
+			description: 'Variaveis',
+			time: 1,
+			content: 'Uma aula de ruby',
+			course: course,
+		)
+
+		Lecture.create!(
+			name: 'Aula pra não ver',
+			description: 'Introdução ao Rails',
+			time: 20,
+			content: 'Uma aula de rails',
+			course: other_course,
+		)
+
+		visit root_path
+
+		click_on 'Cursos'
+
+		click_on 'Ruby'
+
+		expect(page).to have_content('Aulas')
+
+		expect(page).to have_link('Aula 1')
+		expect(page).to have_content('Introdução ao ruby')
+		expect(page).to have_content('40 minutos')
+
+		expect(page).to have_link('Aula 2')
+		expect(page).to have_content('Variaveis')
+		expect(page).to have_content('1 minuto')
+
+		expect(page).not_to have_text('Aula pra não ver')
+		expect(page).not_to have_text('Introdução ao Rails')
+	end
+
+	it 'and view content' do
+		teacher = Teacher.create!(name: 'Jane Doe', email: 'jane@gmail.com')
+
+		course =
+			Course.create!(
+				name: 'Ruby',
+				description: 'Um curso de Ruby',
+				code: 'RUBYBASIC',
+				price: 10,
+				enrollment_deadline: '22/12/2033',
+				teacher: teacher,
+			)
+
+		Lecture.create!(
+			name: 'Aula 1',
+			description: 'Introdução ao ruby',
+			content: 'Uma aula de ruby',
+			time: 10,
+			course: course,
+		)
+
+		visit root_path
+
+		click_on 'Cursos'
+
+		click_on 'Ruby'
+
+		click_on 'Aula 1'
+
+		expect(page).to have_content('Aula 1')
+		expect(page).to have_content('Introdução ao ruby')
+		expect(page).to have_content('Uma aula de ruby')
+
+		expect(page).to have_link('Voltar')
+	end
+
+	it 'and no lecture is available' do
+		teacher = Teacher.create!(name: 'Jane Doe', email: 'jane@gmail.com')
+
+		course =
+			Course.create!(
+				name: 'Ruby',
+				description: 'Um curso de Ruby',
+				code: 'RUBYBASIC',
+				price: 10,
+				enrollment_deadline: '22/12/2033',
+				teacher: teacher,
+			)
+
+		visit root_path
+		click_on 'Cursos'
+		click_on 'Ruby'
+
+		expect(page).to have_content('Nenhuma aula disponível')
+	end
+end

@@ -3,6 +3,8 @@ Rails
 	.routes
 	.draw do
 		root 'home#index'
-		resources :courses
 		resources :teachers
+		resources :courses do
+			resources :lectures, only: %i[create new edit update show destory]
+		end
 	end
