@@ -5,6 +5,9 @@ Rails
 		root 'home#index'
 		resources :teachers
 		resources :courses do
-			resources :lectures, only: %i[create new edit update show destory]
+			resources :lectures
+		end
+		resources :lectures, only: [] do
+			resources :comments, only: [:create]
 		end
 	end

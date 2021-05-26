@@ -1,6 +1,7 @@
 class LecturesController < ApplicationController
-	before_action :get_lecture, only: %i[edit update show destory]
-	before_action :get_course, only: %i[new create show]
+	before_action :get_lecture, only: %i[edit update show destroy]
+	before_action :get_course, only: %i[new edit update create show destroy]
+
 	def new
 		@lecture = Lecture.new
 	end
@@ -16,6 +17,21 @@ class LecturesController < ApplicationController
 	end
 
 	def show; end
+
+	def edit; end
+
+	def update
+		if @lecture.update(lecture_params)
+			redirect_to course_path(@course), notice: 'Aula atualizada com sucesso'
+		else
+			render :edit
+		end
+	end
+
+	def destroy
+		@lecture.destroy
+		redirect_to course_path(@course), notice: 'Aula deletada com sucesso'
+	end
 
 	private
 

@@ -25,6 +25,10 @@
         <%= link_to lecture.name, course_lecture_path(lecture) %>
         <p><%= lecture.description%></p>
         <p><%= t('lectures.time', count: lecture.time) %> </p>
+        <div>
+            <%= link_to "Deletar", course_lecture_path(lecture), method: :delete %>
+            <%= link_to "Editar", edit_course_lecture_path(lecture) %>
+        </div>
     </li>
     <%end%>
 </ul>
