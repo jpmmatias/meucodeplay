@@ -1,5 +1,28 @@
 <h1><%= @lecture.name %></h1>
 <p><%= @lecture.description %></p>
 <p><%= @lecture.content %></p>
-
+<h2>Comentários</h2>
+<%= form_with model: [@lecture, @comment] do |f| %>
+<div>
+    <%= f.label :content, 'Escreva comentário' %>
+    <%= f.text_area :content%>
+    <%if @comment.errors.full_messages_for(:content).any? %>
+    <ul>
+        <% @comment.errors.full_messages_for(:content).each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+    </ul>
+    <%end%>
+</div>
+<%= f.submit 'Enviar comentário' %>
+<%end%>
+<% if @comments.empty? %>
+<p>Sem comentários ainda</p>
+<% else %>
+<ul>
+    <% @comments.each do |comment|%>
+    <li><%= comment.content %></li>
+    <%end%>
+</ul>
+<% end %>
 <%= link_to "Voltar", @course %>
