@@ -104,4 +104,26 @@ describe 'Account Managment' do
 			expect(page).to_not have_link('Sair')
 		end
 	end
+
+	context 'password recovey' do
+		it 'successfully' do
+			user =
+				User.create!(
+					email: 'jane@gmail.com',
+					name: 'Jane Doe',
+					password: 'Senh@1234',
+				)
+			visit root_path
+			click_on 'Login'
+			expect(page).to have_link('Esqueci minha senha')
+			click_on ('Esqueci minha senha')
+
+			fill_in 'Email', with: 'jane@gmail.com'
+			click_on('Enviar')
+			expect(current_path).to eq(new_user_session_path)
+			expect(page).to (
+				'Dentro de minutos, você receberá um e-mail com instruções para a troca da sua senha.'
+			)
+		end
+	end
 end
