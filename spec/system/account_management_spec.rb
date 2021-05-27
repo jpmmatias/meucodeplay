@@ -7,11 +7,8 @@ describe 'Account Managment' do
 			click_on 'Sign Up'
 			fill_in 'Nome', with: 'Jane Doe'
 			fill_in 'Email', with: 'jane@gmail.com'
-
-			#fill_in 'Confirmar Email', with: 'jane@gmail.com'
 			fill_in 'Senha', with: 'Senh@1234'
-
-			#fill_in 'Confirmar senha', with: 'Senh@1234'
+			fill_in 'Confirmação de senha', with: 'Senh@1234'
 			click_on 'Criar conta'
 
 			expect(current_path).to eq(root_path)
@@ -52,5 +49,29 @@ describe 'Account Managment' do
 	end
 
 	context 'logout' do
+		it 'successfully' do
+			user =
+				User.create!(
+					email: 'jane@gmail.com',
+					name: 'Jane Doe',
+					password: 'Senh@1234',
+				)
+
+			visit root_path
+			click_on 'Login'
+			fill_in 'Email', with: 'jane@gmail.com'
+			fill_in 'Senha', with: 'Senh@1234'
+			within 'form' do
+				click_on 'Entrar'
+			end
+			click_on 'Sair'
+
+			expect(page).to have_text('Saiu com sucesso')
+			expect(page).to_not have_text('Jane Doe')
+			expect(current_path).to eq(root_path)
+			expect(page).to have_link('Sign Up')
+			expect(page).to have_link('Login')
+			expect(page).to_not have_link('Sair')
+		end
 	end
 end

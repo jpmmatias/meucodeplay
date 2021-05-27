@@ -3,6 +3,7 @@ Rails
 	.routes
 	.draw do
 		root 'home#index'
+		devise_for :users
 		resources :teachers
 		resources :courses do
 			resources :lectures

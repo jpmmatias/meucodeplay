@@ -13,6 +13,7 @@
 </head>
 
 <body>
+    <%= render "layouts/nav" %>
     <% flash.each do |nome, mensagem| %>
     <%= content_tag :div, mensagem, class: nome %>
     <% end %>
