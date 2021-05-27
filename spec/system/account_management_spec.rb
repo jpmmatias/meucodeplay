@@ -20,9 +20,23 @@ describe 'Account Managment' do
 		end
 
 		it 'without valid field' do
+			visit root_path
+			click_on 'Sign Up'
+			click_on 'Criar conta'
+
+			expect(page).to have_content('não pode ficar em branco', count: 3)
 		end
 
 		it 'password not match confirmation' do
+			visit root_path
+			click_on 'Sign Up'
+			fill_in 'Nome', with: 'Jane Doe'
+			fill_in 'Email', with: 'jane@gmail.com'
+			fill_in 'Senha', with: 'Senh@1234'
+			fill_in 'Confirmação de senha', with: 'SenhaErrada'
+			click_on 'Criar conta'
+
+			expect(page).to have_content('Confirmação de senha não é igual a Senha')
 		end
 	end
 
@@ -45,6 +59,22 @@ describe 'Account Managment' do
 			expect(page).to have_link('Cursos')
 			expect(page).to_not have_link('Login')
 			expect(page).to have_link('Sair')
+		end
+
+		it 'with wrong credentials' do
+			User.create!(
+				email: 'jane@gmail.com',
+				password: 'Senh@1234',
+				name: 'Jane Doe',
+			)
+			visit root_path
+			click_on 'Login'
+			fill_in 'Email', with: 'jane@gmail.com'
+			fill_in 'Senha', with: 'SenhaErrada'
+			within 'form' do
+				click_on 'Entrar'
+			end
+			expect(page).to have_text('Email ou senha inválida.')
 		end
 	end
 
