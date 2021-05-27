@@ -36,14 +36,14 @@ class CoursesController < ApplicationController
 	end
 
 	def destroy
-		Course.destroy(params[:id])
+		Course.friendly.destroy(params[:id])
 		redirect_to courses_path, notice: 'Curso deletado com sucesso'
 	end
 
 	private
 
 	def set_course
-		@course = Course.find(params[:id])
+		@course = Course.friendly.find(params[:id])
 	end
 	def course_params
 		params

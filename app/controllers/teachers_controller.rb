@@ -26,14 +26,14 @@ class TeachersController < ApplicationController
 	end
 
 	def destroy
-		Teacher.destroy((params[:id]))
+		Teacher.friendly.destroy((params[:id]))
 		redirect_to teachers_url
 	end
 
 	private
 
 	def set_teacher
-		@teacher = Teacher.find(params[:id])
+		@teacher = Teacher.friendly.find(params[:id])
 	end
 
 	def teacher_params

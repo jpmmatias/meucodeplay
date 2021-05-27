@@ -30,7 +30,7 @@ describe 'Admin registers lessons' do
 
 		click_on 'Salvar'
 
-		expect(current_path).to eq(course_lecture_path(Lecture.last, course))
+		expect(current_path).to eq(course_lecture_path(course, Lecture.last))
 		expect(page).to have_content('Aula cadastrada com sucesso')
 		expect(page).to have_content('Duck Typing')
 		expect(page).to have_content('Conteúdo do curso')

@@ -22,12 +22,12 @@
 <ul>
     <% @lectures.each do |lecture|%>
     <li>
-        <%= link_to lecture.name, course_lecture_path(lecture) %>
+        <%= link_to lecture.name, course_lecture_path(@course, lecture) %>
         <p><%= lecture.description%></p>
         <p><%= t('lectures.time', count: lecture.time) %> </p>
         <div>
-            <%= link_to "Deletar", course_lecture_path(lecture), method: :delete %>
-            <%= link_to "Editar", edit_course_lecture_path(lecture) %>
+            <%= link_to "Deletar", course_lecture_path(@course, lecture), method: :delete %>
+            <%= link_to "Editar", edit_course_lecture_path(@course, lecture) %>
         </div>
     </li>
     <%end%>

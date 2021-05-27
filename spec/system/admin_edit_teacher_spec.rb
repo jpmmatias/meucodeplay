@@ -35,7 +35,7 @@ describe 'Admin edit teachers information' do
 
 		click_on 'Salvar'
 
-		expect(current_path).to eq(teacher_path(@teacher))
+		expect(current_path).to eq(teacher_path('joao'))
 		expect(page).to have_content('João')
 		expect(page).to have_content('Um professor de Ruby on Rails')
 		expect(page).to have_content('joao@gmail.com')

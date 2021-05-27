@@ -1,11 +1,19 @@
 class Course < ApplicationRecord
 	before_create :set_default_banner
+
+	extend FriendlyId
+	friendly_id :name, use: :slugged
+
 	belongs_to :teacher
 	has_many :lectures, dependent: :destroy
 	has_one_attached :banner
 
 	validates :name, :code, :price, :teacher_id, presence: true
 	validates :code, uniqueness: true
+
+	def should_generate_new_friendly_id?
+		name_changed?
+	end
 
 	private
 

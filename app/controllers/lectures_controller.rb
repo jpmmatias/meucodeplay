@@ -39,11 +39,11 @@ class LecturesController < ApplicationController
 	private
 
 	def get_lecture
-		@lecture = Lecture.find(params[:id])
+		@lecture = Lecture.friendly.find(params[:id])
 	end
 
 	def get_course
-		@course = Course.find(params[:course_id])
+		@course = Course.friendly.find(params[:course_id])
 	end
 
 	def lecture_params
