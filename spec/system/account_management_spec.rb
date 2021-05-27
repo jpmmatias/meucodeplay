@@ -121,8 +121,8 @@ describe 'Account Managment' do
 			fill_in 'Email', with: 'jane@gmail.com'
 			click_on('Enviar')
 			expect(current_path).to eq(new_user_session_path)
-			expect(page).to (
-				'Dentro de minutos, você receberá um e-mail com instruções para a troca da sua senha.'
+			expect(page).to have_text(
+				'Dentro de minutos, você receberá um e-mail com instruções para a troca da sua senha.',
 			)
 		end
 	end
