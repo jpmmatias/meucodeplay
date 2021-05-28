@@ -13,6 +13,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'friendly_id', '~> 5.4.0'
 gem 'devise'
 gem 'devise-tailwinded'
+
 group :development, :test do
   gem 'sqlite3', '~> 1.4'
   gem 'rspec-rails', '~> 5.0.0'
@@ -29,7 +30,8 @@ end
 
 group :test do
  gem 'capybara'
-  gem 'selenium-webdriver'
+ gem 'shoulda-matchers', '~> 4.0'
+ gem 'selenium-webdriver'
  gem "webdrivers"
 end
 
