@@ -2,16 +2,20 @@ require 'rails_helper'
 
 describe Teacher do
 	context 'validation' do
-		it 'attributes cannot be blank' do
-			teacher = Teacher.new
+		it { should have_many(:courses) }
 
-			teacher.valid?
-
-			expect(teacher.errors[:name]).to include('não pode ficar em branco')
-			expect(teacher.errors[:email]).to include('não pode ficar em branco')
+		it do
+			should validate_presence_of(:name).with_message(
+					'não pode ficar em branco',
+			       )
 		end
 
-		it 'email must be uniq' do
+		it do
+			should validate_presence_of(:email).with_message(
+					'não pode ficar em branco',
+			       )
+		end
+		it do
 			Teacher.create!(
 				name: 'Henrique',
 				bio: 'Professor de Ruby',

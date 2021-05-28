@@ -1,12 +1,23 @@
 require 'rails_helper'
 
 RSpec.describe Lecture, type: :model do
-	it 'attributes cannot be blank' do
-		lecture = Lecture.new
-		lecture.valid?
+	it { should belong_to(:course) }
 
-		expect(lecture.errors[:name]).to include('não pode ficar em branco')
-		expect(lecture.errors[:content]).to include('não pode ficar em branco')
-		expect(lecture.errors[:time]).to include('não pode ficar em branco')
+	context 'validation' do
+		it do
+			should validate_presence_of(:name).with_message(
+					'não pode ficar em branco',
+			       )
+		end
+		it do
+			should validate_presence_of(:content).with_message(
+					'não pode ficar em branco',
+			       )
+		end
+		it do
+			should validate_presence_of(:time).with_message(
+					'não pode ficar em branco',
+			       )
+		end
 	end
 end
