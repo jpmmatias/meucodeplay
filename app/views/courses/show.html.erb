@@ -1,4 +1,5 @@
 <h1><%= @course.name %></h1>
+
 <%= link_to "Editar", [:edit, @course] %>
 <%= link_to "Deletar", @course, method:'delete' %>
 <dl>
@@ -14,6 +15,12 @@
     <dt>Código</dt>
     <dd><%= @course.code %></dd>
 </dl>
+<%if user_signed_in? %>
+<%= link_to "Comprar", "#" %>
+<%else%>
+<p>Faça <%= link_to "login", "#" %> para comprar esse curso </p>
+<%end%>
+
 <h1>Aulas</h1>
 <%= link_to "Cadastrar uma aula", new_course_lecture_path(@course) %>
 <% if @lectures.empty? %>

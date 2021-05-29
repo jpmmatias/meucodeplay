@@ -2,14 +2,13 @@ require 'rails_helper'
 
 describe Course do
 	context 'validation' do
+		subject { Course.new }
 		it 'attributes cannot be blank' do
-			course = Course.new
+			subject.valid?
 
-			course.valid?
-
-			expect(course.errors[:name]).to include('não pode ficar em branco')
-			expect(course.errors[:code]).to include('não pode ficar em branco')
-			expect(course.errors[:price]).to include('não pode ficar em branco')
+			expect(subject.errors[:name]).to include('não pode ficar em branco')
+			expect(subject.errors[:code]).to include('não pode ficar em branco')
+			expect(subject.errors[:price]).to include('não pode ficar em branco')
 		end
 
 		it 'code must be uniq' do
