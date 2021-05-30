@@ -1,7 +1,11 @@
 class CommentsController < ApplicationController
 	def create
 		lecture = Lecture.friendly.find(params[:lecture_id])
-		comment = lecture.comments.new(comment_params)
+		comment =
+			lecture.comments.new(
+				content: comment_params[:content],
+				user: current_user,
+			)
 
 		if comment.save
 			course = Course.find(lecture.course_id)

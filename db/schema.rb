@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_30_154217) do
+ActiveRecord::Schema.define(version: 2021_05_30_171634) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -45,7 +45,9 @@ ActiveRecord::Schema.define(version: 2021_05_30_154217) do
     t.integer "lecture_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id", null: false
     t.index ["lecture_id"], name: "index_comments_on_lecture_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "courses", force: :cascade do |t|
@@ -122,6 +124,7 @@ ActiveRecord::Schema.define(version: 2021_05_30_154217) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comments", "lectures"
+  add_foreign_key "comments", "users"
   add_foreign_key "courses", "teachers"
   add_foreign_key "enrollments", "courses"
   add_foreign_key "enrollments", "users"

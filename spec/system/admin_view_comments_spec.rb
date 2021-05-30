@@ -1,6 +1,8 @@
 require 'rails_helper'
 describe 'Admin view comments' do
 	it 'sucessfully' do
+		user =
+			User.create!(email: 'joão@gmail.com', name: 'João', password: 'Senh@1234')
 		teacher = Teacher.create!(name: 'Jane Doe', email: 'jane@gmail.com')
 		course =
 			Course.create!(
@@ -21,8 +23,13 @@ describe 'Admin view comments' do
 				course: course,
 			)
 
-		Comment.create!(content: 'Aula muito boa!', lecture: lecture)
-		Comment.create!(content: 'Aula sensacional!', lecture: lecture)
+		enrollment =
+			Enrollment.create!(user: user, course: course, price: course.price)
+
+		login_as user, scope: :user
+
+		Comment.create!(content: 'Aula muito boa!', lecture: lecture, user: user)
+		Comment.create!(content: 'Aula sensacional!', lecture: lecture, user: user)
 
 		visit course_lecture_path(course, lecture)
 
@@ -32,6 +39,8 @@ describe 'Admin view comments' do
 	end
 
 	it "and don't have comments" do
+		user =
+			User.create!(email: 'joão@gmail.com', name: 'João', password: 'Senh@1234')
 		teacher = Teacher.create!(name: 'Jane Doe', email: 'jane@gmail.com')
 		course =
 			Course.create!(
@@ -51,6 +60,10 @@ describe 'Admin view comments' do
 				content: 'Uma aula de ruby',
 				course: course,
 			)
+
+		enrollment =
+			Enrollment.create!(user: user, course: course, price: course.price)
+		login_as user, scope: :user
 		visit course_lecture_path(course, lecture)
 		expect(page).to have_text('Comentários')
 		expect(page).to have_text('Sem comentários ainda')

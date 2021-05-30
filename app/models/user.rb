@@ -1,6 +1,7 @@
 class User < ApplicationRecord
 	validates :name, presence: true
 	has_many :enrollments
+	has_many :comments
 	has_many :courses, through: :enrollments
 
 	# Include default devise modules. Others available are:
