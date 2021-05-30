@@ -15,12 +15,20 @@
     <dt>Código</dt>
     <dd><%= @course.code %></dd>
 </dl>
+
 <%if user_signed_in? %>
-<%= link_to "Comprar", "#" %>
+<% if  @course.enrollment_deadline < Date.today %>
+<p>Praso de inscrição de curso terminou</p>
+<% else%>
+<% unless current_user.courses.include?(@course)%>
+<%= link_to "Comprar", enroll_course_path, method: :post %>
+<% end %>
+<% end %>
 <%else%>
-<p>Faça <%= link_to "login", "#" %> para comprar esse curso </p>
+<p>Faça <%= link_to "login", new_user_session_path %> para comprar esse curso </p>
 <%end%>
 
+<% if user_signed_in? and current_user.courses.include?(@course) %>
 <h1>Aulas</h1>
 <%= link_to "Cadastrar uma aula", new_course_lecture_path(@course) %>
 <% if @lectures.empty? %>
@@ -39,6 +47,7 @@
     </li>
     <%end%>
 </ul>
+<% end %>
 <% end %>
 
 

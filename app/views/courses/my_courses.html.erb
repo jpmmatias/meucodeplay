@@ -1,0 +1,5 @@
+<h1>Meus cursos</h1>
+<% @enrollments.each do |enrollment|%>
+<h3><%= enrollment.course.name %></h3>
+<p>Comprado dia: <%= enrollment.created_at %> por <%= number_to_currency enrollment.price %> </p>
+<% end%>

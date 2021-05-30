@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_27_222448) do
+ActiveRecord::Schema.define(version: 2021_05_30_154217) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -60,6 +60,16 @@ ActiveRecord::Schema.define(version: 2021_05_27_222448) do
     t.string "slug"
     t.index ["slug"], name: "index_courses_on_slug", unique: true
     t.index ["teacher_id"], name: "index_courses_on_teacher_id"
+  end
+
+  create_table "enrollments", force: :cascade do |t|
+    t.integer "course_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.decimal "price"
+    t.index ["course_id"], name: "index_enrollments_on_course_id"
+    t.index ["user_id"], name: "index_enrollments_on_user_id"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -113,5 +123,7 @@ ActiveRecord::Schema.define(version: 2021_05_27_222448) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comments", "lectures"
   add_foreign_key "courses", "teachers"
+  add_foreign_key "enrollments", "courses"
+  add_foreign_key "enrollments", "users"
   add_foreign_key "lectures", "courses"
 end

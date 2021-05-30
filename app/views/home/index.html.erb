@@ -6,5 +6,8 @@
 <h3>Cursos Disponíveis</h3>
 
 <% @courses.each do |course|%>
-<h4><%= course.name %></h4>
+<h1><%= link_to course.name, course %></h1>
+<p><%= course.description%></p>
+<p>Preço: <span><%= number_to_currency course.price%></span></p>
+
 <%end%>

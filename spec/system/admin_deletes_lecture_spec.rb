@@ -2,6 +2,9 @@ require 'rails_helper'
 
 describe 'Admin deletes lectures' do
 	it 'successfully' do
+		user =
+			User.create!(email: 'joão@gmail.com', name: 'João', password: 'Senh@1234')
+
 		teacher = Teacher.create!(name: 'Jane Doe', email: 'jane@gmail.com')
 		course =
 			Course.create!(
@@ -28,6 +31,11 @@ describe 'Admin deletes lectures' do
 			content: 'Uma aula de ruby',
 			course: course,
 		)
+
+		enrollment =
+			Enrollment.create!(user: user, course: course, price: course.price)
+
+		login_as user, scope: :user
 
 		visit course_path(course)
 

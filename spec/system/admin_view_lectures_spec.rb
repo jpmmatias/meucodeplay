@@ -2,6 +2,8 @@ require 'rails_helper'
 
 describe 'Admin view lectures' do
 	it 'successfully' do
+		user =
+			User.create!(email: 'joão@gmail.com', name: 'João', password: 'Senh@1234')
 		teacher = Teacher.create!(name: 'Jane Doe', email: 'jane@gmail.com')
 
 		course =
@@ -48,6 +50,11 @@ describe 'Admin view lectures' do
 			course: other_course,
 		)
 
+		enrollment =
+			Enrollment.create!(user: user, course: course, price: course.price)
+
+		login_as user, scope: :user
+
 		visit root_path
 
 		click_on 'Cursos'
@@ -69,6 +76,9 @@ describe 'Admin view lectures' do
 	end
 
 	it 'and view content' do
+		user =
+			User.create!(email: 'joão@gmail.com', name: 'João', password: 'Senh@1234')
+
 		teacher = Teacher.create!(name: 'Jane Doe', email: 'jane@gmail.com')
 
 		course =
@@ -89,6 +99,11 @@ describe 'Admin view lectures' do
 			course: course,
 		)
 
+		enrollment =
+			Enrollment.create!(user: user, course: course, price: course.price)
+
+		login_as user, scope: :user
+
 		visit root_path
 
 		click_on 'Cursos'
@@ -105,6 +120,8 @@ describe 'Admin view lectures' do
 	end
 
 	it 'and no lecture is available' do
+		user =
+			User.create!(email: 'joão@gmail.com', name: 'João', password: 'Senh@1234')
 		teacher = Teacher.create!(name: 'Jane Doe', email: 'jane@gmail.com')
 
 		course =
@@ -116,6 +133,10 @@ describe 'Admin view lectures' do
 				enrollment_deadline: '22/12/2033',
 				teacher: teacher,
 			)
+		enrollment =
+			Enrollment.create!(user: user, course: course, price: course.price)
+
+		login_as user, scope: :user
 
 		visit root_path
 		click_on 'Cursos'

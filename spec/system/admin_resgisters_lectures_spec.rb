@@ -2,6 +2,8 @@ require 'rails_helper'
 
 describe 'Admin registers lessons' do
 	it 'sucessufuly' do
+		user =
+			User.create!(email: 'joão@gmail.com', name: 'João', password: 'Senh@1234')
 		teacher = Teacher.create!(name: 'Jane Doe', email: 'jane@gmail.com')
 
 		course =
@@ -13,6 +15,11 @@ describe 'Admin registers lessons' do
 				enrollment_deadline: '22/12/2033',
 				teacher: teacher,
 			)
+
+		enrollment =
+			Enrollment.create!(user: user, course: course, price: course.price)
+
+		login_as user, scope: :user
 
 		visit course_path(course)
 
@@ -39,6 +46,8 @@ describe 'Admin registers lessons' do
 	end
 
 	it 'fields cannot be empty' do
+		user =
+			User.create!(email: 'joão@gmail.com', name: 'João', password: 'Senh@1234')
 		teacher = Teacher.create!(name: 'Jane Doe', email: 'jane@gmail.com')
 		course =
 			Course.create!(
@@ -49,6 +58,11 @@ describe 'Admin registers lessons' do
 				enrollment_deadline: '22/12/2033',
 				teacher: teacher,
 			)
+
+		enrollment =
+			Enrollment.create!(user: user, course: course, price: course.price)
+
+		login_as user, scope: :user
 
 		visit course_path(course)
 
