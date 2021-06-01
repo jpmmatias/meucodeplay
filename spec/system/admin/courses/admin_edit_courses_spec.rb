@@ -15,7 +15,7 @@ describe 'admin updates courses' do
 			)
 		enrollment_date = 10.days.from_now
 
-		visit course_path(@course)
+		visit admin_course_path(@course)
 
 		click_on 'Editar'
 

@@ -37,7 +37,7 @@ describe 'Admin deletes lectures' do
 
 		login_as user, scope: :user
 
-		visit course_path(course)
+		visit admin_course_path(course)
 
 		expect(page).to have_link('Deletar', count: 3)
 		all('a', text: 'Deletar')[1].click

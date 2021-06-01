@@ -1,5 +1,5 @@
 require 'rails_helper'
-describe 'Admin view comments' do
+describe 'Student view comments' do
 	it 'sucessfully' do
 		user =
 			User.create!(email: 'joão@gmail.com', name: 'João', password: 'Senh@1234')

@@ -1,7 +1,7 @@
 <h1><%= @course.name %></h1>
 
-<%= link_to "Editar", [:edit, @course] %>
-<%= link_to "Deletar", @course, method:'delete' %>
+<%= link_to "Editar", edit_admin_course_path(@course) %>
+<%= link_to "Deletar", [:admin, @course], method:'delete' %>
 <dl>
     <dd><%= image_tag @course.banner %></dd>
     <dt>Descrição</dt>
@@ -30,19 +30,19 @@
 
 <% if user_signed_in? and current_user.courses.include?(@course) %>
 <h1>Aulas</h1>
-<%= link_to "Cadastrar uma aula", new_course_lecture_path(@course) %>
+<%= link_to "Cadastrar uma aula", new_admin_course_lecture_path(@course) %>
 <% if @lectures.empty? %>
 <h1>Nenhuma aula disponível</h1>
 <%else%>
 <ul>
     <% @lectures.each do |lecture|%>
     <li>
-        <%= link_to lecture.name, course_lecture_path(@course, lecture) %>
+        <%= link_to lecture.name, admin_course_lecture_path(@course, lecture) %>
         <p><%= lecture.description%></p>
         <p><%= t('lectures.time', count: lecture.time) %> </p>
         <div>
-            <%= link_to "Deletar", course_lecture_path(@course, lecture), method: :delete %>
-            <%= link_to "Editar", edit_course_lecture_path(@course, lecture) %>
+            <%= link_to "Deletar", [:admin, @course, lecture], method: :delete %>
+            <%= link_to "Editar", edit_admin_course_lecture_path(@course, lecture) %>
         </div>
     </li>
     <%end%>
@@ -51,4 +51,4 @@
 <% end %>
 
 
-<%= link_to "Voltar", courses_path %>
+<%= link_to "Voltar", admin_courses_path %>

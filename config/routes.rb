@@ -4,9 +4,16 @@ Rails
 	.draw do
 		root 'home#index'
 		devise_for :users
+
+		namespace :admin do
+			resources :courses do
+				resources :lectures
+			end
+		end
+
 		resources :teachers
-		resources :courses do
-			resources :lectures
+		resources :courses, only: [:show] do
+			resources :lectures, only: [:show]
 			post 'enroll', on: :member
 			get 'my_courses', on: :collection
 			#get 'search', on: :collection

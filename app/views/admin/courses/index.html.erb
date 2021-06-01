@@ -1,10 +1,10 @@
-<%= link_to "Registrar um Curso", new_course_path %>
+<%= link_to "Registrar um Curso", new_admin_course_path %>
 <% if @courses.blank? %>
 <h1>Nenhum curso disponível</h1>
 <%end%>
 
 <% @courses.each do |course| %>
-<h1><%= link_to course.name, course %></h1>
+<h1><%= link_to course.name, admin_course_path(course) %></h1>
 <h2><%= course.teacher.name%></h2>
 <%= image_tag course.banner %>
 <p><%= course.description%></p>

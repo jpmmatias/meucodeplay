@@ -21,11 +21,11 @@ describe 'Admin registers lessons' do
 
 		login_as user, scope: :user
 
-		visit course_path(course)
+		visit admin_course_path(course)
 
 		expect(page).to have_link(
 			'Cadastrar uma aula',
-			href: new_course_lecture_path(course),
+			href: new_admin_course_lecture_path(course),
 		)
 
 		click_on 'Cadastrar uma aula'
@@ -37,7 +37,7 @@ describe 'Admin registers lessons' do
 
 		click_on 'Salvar'
 
-		expect(current_path).to eq(course_lecture_path(course, Lecture.last))
+		expect(current_path).to eq(admin_course_lecture_path(course, Lecture.last))
 		expect(page).to have_content('Aula cadastrada com sucesso')
 		expect(page).to have_content('Duck Typing')
 		expect(page).to have_content('Conteúdo do curso')
@@ -64,7 +64,7 @@ describe 'Admin registers lessons' do
 
 		login_as user, scope: :user
 
-		visit course_path(course)
+		visit admin_course_path(course)
 
 		click_on 'Cadastrar uma aula'
 

@@ -1,8 +1,13 @@
 ---
 pt-BR:
-  courses:
-    update:
-      success: 'Curso atualizado com sucesso'
+  admin:
+    courses:
+      new:
+        title: 'Registrar um teste'
+      update:
+        success: 'Curso atualizado com sucesso'
+      show:
+        empty: 'Esse curso ainda não tem aulas cadastradas'
   activerecord:
     models:
       course: Curso

@@ -29,7 +29,7 @@ describe 'admin updates lectures' do
 
 		login_as user, scope: :user
 
-		visit course_path(course)
+		visit admin_course_path(course)
 
 		expect(page).to have_link('Aula 1')
 		expect(page).to have_content('Introdução ao ruby')
@@ -37,7 +37,7 @@ describe 'admin updates lectures' do
 
 		expect(page).to have_link(
 			'Editar',
-			href: edit_course_lecture_path(course, lecture),
+			href: edit_admin_course_lecture_path(course, lecture),
 		)
 
 		all('a', text: 'Editar')[1].click

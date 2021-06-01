@@ -4,7 +4,7 @@ describe 'Admin registers courses' do
 		visit root_path
 		click_on 'Cursos'
 
-		expect(page).to have_link('Registrar um Curso', href: new_course_path)
+		expect(page).to have_link('Registrar um Curso', href: new_admin_course_path)
 	end
 
 	it 'successfully' do
@@ -23,7 +23,7 @@ describe 'Admin registers courses' do
 
 		click_on 'Criar curso'
 
-		expect(current_path).to eq(course_path(Course.last))
+		expect(current_path).to eq(admin_course_path(Course.last))
 		expect(page).to have_content('Ruby on Rails')
 		expect(page).to have_content('Um curso de Ruby on Rails')
 		expect(page).to have_content('Jane Doe')

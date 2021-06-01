@@ -12,6 +12,8 @@ class Teacher < ApplicationRecord
 			message: 'já está em uso',
 	          }
 
+	# scope :active, -> { where(:active => true)}
+
 	def should_generate_new_friendly_id?
 		name_changed?
 	end

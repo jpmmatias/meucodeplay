@@ -1,6 +1,6 @@
 <h1>Cadastrar uma aula</h1>
 
-<%= form_with model: [course, lecture] do |f| %>
+<%= form_with model: [:admin, course, lecture] do |f| %>
 <div>
     <%= f.label :name %>
     <%= f.text_field :name%>

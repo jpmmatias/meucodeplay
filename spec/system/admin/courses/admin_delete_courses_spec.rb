@@ -13,12 +13,12 @@ describe 'Admin deletes courses' do
 				teacher: teacher,
 			)
 
-		visit course_path(@course)
+		visit admin_course_path(@course)
 
 		click_on 'Deletar'
 
 		expect(Course.count).to eq(0)
 
-		expect(current_path).to eq(courses_path)
+		expect(current_path).to eq(admin_courses_path)
 	end
 end

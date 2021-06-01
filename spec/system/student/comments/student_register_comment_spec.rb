@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Admin comment leture' do
+describe 'Student comment leture' do
 	it 'sucessfully' do
 		user =
 			User.create!(email: 'joão@gmail.com', name: 'João', password: 'Senh@1234')

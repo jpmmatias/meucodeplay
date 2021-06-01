@@ -1,4 +1,4 @@
-class CoursesController < ApplicationController
+class Admin::CoursesController < ApplicationController
 	before_action :set_course, only: %i[show edit update destroy enroll]
 	def index
 		@courses = Course.all
@@ -15,7 +15,7 @@ class CoursesController < ApplicationController
 	def create
 		@course = Course.new(course_params)
 		if @course.save
-			redirect_to @course, notice: 'Curso criado com sucesso'
+			redirect_to [:admin, @course], notice: 'Curso criado com sucesso'
 		else
 			@teachers = Teacher.all
 			render :new
@@ -28,7 +28,7 @@ class CoursesController < ApplicationController
 
 	def update
 		if @course.update(course_params)
-			redirect_to @course, notice: t('.success')
+			redirect_to [:admin, @course], notice: t('.success')
 		else
 			flash[:alert] = @course.errors.full_messages
 			render :edit
@@ -37,7 +37,7 @@ class CoursesController < ApplicationController
 
 	def destroy
 		Course.friendly.destroy(params[:id])
-		redirect_to courses_path, notice: 'Curso deletado com sucesso'
+		redirect_to admin_courses_path, notice: 'Curso deletado com sucesso'
 	end
 
 	def enroll

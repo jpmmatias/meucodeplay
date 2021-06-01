@@ -11,6 +11,12 @@ class Course < ApplicationRecord
 	validates :name, :code, :price, :teacher_id, presence: true
 	validates :code, uniqueness: true
 
+	# scope :drafts, -> { where(:draft => true)}
+
+	scope :available, -> { where(enrollment_deadline: Date.today..) }
+
+	scope :last_day_courses, -> { where(enrollment_deadline: Date.today) }
+
 	def should_generate_new_friendly_id?
 		name_changed?
 	end
