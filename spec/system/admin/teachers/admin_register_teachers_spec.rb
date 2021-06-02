@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe 'Admin registers teachers' do
 	it 'from index page' do
+		user_login
 		visit root_path
 		click_on 'Professores'
 
@@ -9,6 +10,7 @@ describe 'Admin registers teachers' do
 	end
 
 	it 'successfully' do
+		user_login
 		visit root_path
 		click_on 'Professores'
 		click_on 'Registrar um Professor'
@@ -34,7 +36,7 @@ describe 'Admin registers teachers' do
 			email: 'henrique@gmail.com',
 			profile_picture: Rack::Test::UploadedFile.new('spec/fixtures/teste.png'),
 		)
-
+		user_login
 		visit root_path
 		click_on 'Professores'
 		click_on 'Registrar um Professor'
@@ -53,6 +55,7 @@ describe 'Admin registers teachers' do
 			email: 'henrique@gmail.com',
 			profile_picture: Rack::Test::UploadedFile.new('spec/fixtures/teste.png'),
 		)
+		user_login
 
 		visit root_path
 		click_on 'Professor'

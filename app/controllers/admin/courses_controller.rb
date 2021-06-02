@@ -1,5 +1,7 @@
-class Admin::CoursesController < ApplicationController
+class Admin::CoursesController < Admin::AdminController
 	before_action :set_course, only: %i[show edit update destroy enroll]
+	before_action :authenticate_user!,
+	              only: %i[index edit update create new destroy]
 	def index
 		@courses = Course.all
 	end

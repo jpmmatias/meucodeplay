@@ -9,6 +9,7 @@ describe 'Admin view teachers' do
 				'Sou professor do curso de Ciência de Dados e Design de Interação da PUC-SP',
 			profile_picture: Rack::Test::UploadedFile.new('spec/fixtures/teste.png'),
 		)
+		user_login
 		visit root_path
 		click_on 'Professores'
 		expect(page).to have_content('Diogo Cortiz')

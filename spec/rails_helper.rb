@@ -37,7 +37,7 @@ rescue ActiveRecord::PendingMigrationError => e
 end
 RSpec.configure do |config|
 	config.include Warden::Test::Helpers
-
+	config.include LoginMacros
 	config.before(type: :system) { driven_by :rack_test }
 
 	# Remove this line if you're not using ActiveRecord or ActiveRecord fixtures

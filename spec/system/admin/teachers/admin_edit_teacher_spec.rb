@@ -10,7 +10,7 @@ describe 'Admin edit teachers information' do
 				profile_picture:
 					Rack::Test::UploadedFile.new('spec/fixtures/teste.png'),
 			)
-
+		user_login
 		visit root_path
 		click_on 'Professores'
 		expect(page).to have_link('Editar', href: edit_teacher_path(@teacher))
@@ -25,6 +25,7 @@ describe 'Admin edit teachers information' do
 				profile_picture:
 					Rack::Test::UploadedFile.new('spec/fixtures/teste.png'),
 			)
+		user_login
 		visit root_path
 		click_on 'Professores'
 		click_on 'Editar'

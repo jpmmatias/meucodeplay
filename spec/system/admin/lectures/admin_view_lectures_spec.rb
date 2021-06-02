@@ -2,8 +2,6 @@ require 'rails_helper'
 
 describe 'Admin view lectures' do
 	it 'successfully' do
-		user =
-			User.create!(email: 'joão@gmail.com', name: 'João', password: 'Senh@1234')
 		teacher = Teacher.create!(name: 'Jane Doe', email: 'jane@gmail.com')
 
 		course =
@@ -49,11 +47,9 @@ describe 'Admin view lectures' do
 			content: 'Uma aula de rails',
 			course: other_course,
 		)
-
+		user = user_login
 		enrollment =
 			Enrollment.create!(user: user, course: course, price: course.price)
-
-		login_as user, scope: :user
 
 		visit root_path
 
@@ -76,11 +72,8 @@ describe 'Admin view lectures' do
 	end
 
 	it 'and view content' do
-		user =
-			User.create!(email: 'joão@gmail.com', name: 'João', password: 'Senh@1234')
-
 		teacher = Teacher.create!(name: 'Jane Doe', email: 'jane@gmail.com')
-
+		user = user_login
 		course =
 			Course.create!(
 				name: 'Ruby',
@@ -102,8 +95,6 @@ describe 'Admin view lectures' do
 		enrollment =
 			Enrollment.create!(user: user, course: course, price: course.price)
 
-		login_as user, scope: :user
-
 		visit root_path
 
 		click_on 'Cursos'
@@ -120,10 +111,8 @@ describe 'Admin view lectures' do
 	end
 
 	it 'and no lecture is available' do
-		user =
-			User.create!(email: 'joão@gmail.com', name: 'João', password: 'Senh@1234')
 		teacher = Teacher.create!(name: 'Jane Doe', email: 'jane@gmail.com')
-
+		user = user_login
 		course =
 			Course.create!(
 				name: 'Ruby',
@@ -136,12 +125,33 @@ describe 'Admin view lectures' do
 		enrollment =
 			Enrollment.create!(user: user, course: course, price: course.price)
 
-		login_as user, scope: :user
-
 		visit root_path
 		click_on 'Cursos'
 		click_on 'Ruby'
 
 		expect(page).to have_content('Nenhuma aula disponível')
+	end
+	it 'must be logged in to view courses through route' do
+		teacher = Teacher.create!(name: 'Jane Doe', email: 'jane@gmail.com')
+		course =
+			Course.create!(
+				name: 'Ruby',
+				description: 'Um curso de Ruby',
+				code: 'RUBYBASIC',
+				price: 10,
+				enrollment_deadline: '22/12/2033',
+				teacher: teacher,
+			)
+		lecture =
+			Lecture.create!(
+				name: 'Aula 1',
+				description: 'Introdução ao ruby',
+				content: 'Uma aula de ruby',
+				time: 10,
+				course: course,
+			)
+		visit admin_course_lecture_path(course, lecture)
+
+		expect(current_path).to eq(new_user_session_path)
 	end
 end

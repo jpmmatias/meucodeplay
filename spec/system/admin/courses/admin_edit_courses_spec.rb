@@ -15,6 +15,8 @@ describe 'admin updates courses' do
 			)
 		enrollment_date = 10.days.from_now
 
+		user_login
+
 		visit admin_course_path(@course)
 
 		click_on 'Editar'
@@ -36,5 +38,35 @@ describe 'admin updates courses' do
 		expect(page).to have_text("#{teacher2.name}")
 
 		expect(page).to have_text('Curso atualizado com sucesso')
+	end
+	it 'must be logged in to view course edit button' do
+		teacher = Teacher.create!(name: 'Jane Doe', email: 'jane@gmail.com')
+		@course =
+			Course.create!(
+				name: 'Ruby',
+				description: 'Um curso de Ruby',
+				code: 'RUBYBASIC',
+				price: 10,
+				enrollment_deadline: '22/12/2033',
+				teacher: teacher,
+			)
+		visit admin_course_path(@course)
+		expect(page).not_to have_link('Editar')
+	end
+
+	it 'must be logged in to edit courses through route' do
+		teacher = Teacher.create!(name: 'Jane Doe', email: 'jane@gmail.com')
+		@course =
+			Course.create!(
+				name: 'Ruby',
+				description: 'Um curso de Ruby',
+				code: 'RUBYBASIC',
+				price: 10,
+				enrollment_deadline: '22/12/2033',
+				teacher: teacher,
+			)
+		visit edit_admin_course_path(@course)
+
+		expect(current_path).to eq(new_user_session_path)
 	end
 end

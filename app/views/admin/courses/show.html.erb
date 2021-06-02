@@ -1,7 +1,8 @@
 <h1><%= @course.name %></h1>
-
+<%if user_signed_in? %>
 <%= link_to "Editar", edit_admin_course_path(@course) %>
 <%= link_to "Deletar", [:admin, @course], method:'delete' %>
+<% end %>
 <dl>
     <dd><%= image_tag @course.banner %></dd>
     <dt>Descrição</dt>
@@ -40,9 +41,10 @@
         <%= link_to lecture.name, admin_course_lecture_path(@course, lecture) %>
         <p><%= lecture.description%></p>
         <p><%= t('lectures.time', count: lecture.time) %> </p>
-        <div>
-            <%= link_to "Deletar", [:admin, @course, lecture], method: :delete %>
-            <%= link_to "Editar", edit_admin_course_lecture_path(@course, lecture) %>
+        <%if user_signed_in? %>
+        <%= link_to "Deletar", [:admin, @course, lecture], method: :delete %>
+        <%= link_to "Editar", edit_admin_course_lecture_path(@course, lecture) %>
+        <% end %>
         </div>
     </li>
     <%end%>

@@ -20,6 +20,8 @@ describe 'Admin view courses' do
 			teacher: teacher,
 		)
 
+		user_login
+
 		visit root_path
 		click_on 'Cursos'
 
@@ -51,7 +53,7 @@ describe 'Admin view courses' do
 			enrollment_deadline: '20/12/2033',
 			teacher: teacher,
 		)
-
+		user_login
 		visit root_path
 		click_on 'Cursos'
 		click_on 'Ruby on Rails'
@@ -65,6 +67,7 @@ describe 'Admin view courses' do
 	end
 
 	it 'and no course is available' do
+		user_login
 		visit root_path
 		click_on 'Cursos'
 
@@ -81,7 +84,7 @@ describe 'Admin view courses' do
 			enrollment_deadline: '22/12/2033',
 			teacher: teacher,
 		)
-
+		user_login
 		visit root_path
 		click_on 'Cursos'
 		click_on 'Voltar'
@@ -99,12 +102,23 @@ describe 'Admin view courses' do
 			enrollment_deadline: '22/12/2033',
 			teacher: teacher,
 		)
-
+		user_login
 		visit root_path
 		click_on 'Cursos'
 		click_on 'Ruby'
 		click_on 'Voltar'
 
 		expect(current_path).to eq admin_courses_path
+	end
+	it 'must be logged in to view courses button' do
+		visit root_path
+
+		expect(page).to_not have_link('Cursos')
+	end
+
+	it 'must be logged in to view courses through route' do
+		visit admin_courses_path
+
+		expect(current_path).to eq(new_user_session_path)
 	end
 end

@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe 'Admin deletes teacher' do
 	it 'from index page' do
+		user_login
 		@teacher =
 			Teacher.create(
 				name: 'Henrique',
@@ -17,6 +18,7 @@ describe 'Admin deletes teacher' do
 	end
 
 	it 'sucessufuly' do
+		user_login
 		Teacher.create!(
 			name: 'Henrique',
 			bio: 'Um professor de Ruby on Rails',
@@ -39,6 +41,7 @@ describe 'Admin deletes teacher' do
 	end
 
 	it 'courses deleteted with teachers' do
+		user_login
 		teacher =
 			Teacher.create!(
 				name: 'Henrique',

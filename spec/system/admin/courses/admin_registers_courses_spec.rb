@@ -1,6 +1,7 @@
 require 'rails_helper'
 describe 'Admin registers courses' do
 	it 'from index page' do
+		user_login
 		visit root_path
 		click_on 'Cursos'
 
@@ -8,6 +9,7 @@ describe 'Admin registers courses' do
 	end
 
 	it 'successfully' do
+		user_login
 		teacher = Teacher.create!(name: 'Jane Doe', email: 'jane@gmail.com')
 		visit root_path
 		click_on 'Cursos'
@@ -35,6 +37,7 @@ describe 'Admin registers courses' do
 	end
 
 	it 'and attributes cannot be blank' do
+		user_login
 		visit root_path
 		click_on 'Cursos'
 		click_on 'Registrar um Curso'
@@ -45,6 +48,7 @@ describe 'Admin registers courses' do
 	end
 
 	it 'and code must be unique' do
+		user_login
 		teacher = Teacher.create!(name: 'Jane Doe', email: 'jane@gmail.com')
 		Course.create!(
 			name: 'Ruby',
@@ -62,5 +66,11 @@ describe 'Admin registers courses' do
 		click_on 'Criar curso'
 
 		expect(page).to have_content('já está em uso')
+	end
+
+	it 'must be logged in to create courses through route' do
+		visit new_admin_course_path
+
+		expect(current_path).to eq(new_user_session_path)
 	end
 end
