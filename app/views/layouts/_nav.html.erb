@@ -11,15 +11,15 @@
             <li class="border-t md:border-none">
                 <%= link_to "Home",  root_url %>
             </li>
-            <% if user_signed_in? %>
-            <li> Olá <span><%= current_user.name %></span> </li>
-            <%= link_to "Sair", destroy_user_session_path, method: :delete %>
+            <% if student_signed_in? %>
+            <li> Olá <span><%= current_student.name %></span> </li>
+            <%= link_to "Sair", destroy_student_session_path, method: :delete %>
             <%else%>
             <li class="border-t md:border-none">
-                <%= link_to "Sign Up",  new_user_registration_path %>
+                <%= link_to "Sign Up",  new_student_registration_path %>
             </li>
             <li class="border-t md:border-none">
-                <%= link_to "Login", new_user_session_path %>
+                <%= link_to "Login", new_student_session_path %>
             </li>
             <% end %>
 

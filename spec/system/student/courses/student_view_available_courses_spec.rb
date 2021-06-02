@@ -32,8 +32,12 @@ describe 'Student view courses on homepage' do
 	end
 
 	it 'and view enrollment link' do
-		user =
-			User.create!(email: 'joão@gmail.com', name: 'João', password: 'Senh@1234')
+		student =
+			Student.create!(
+				email: 'joão@gmail.com',
+				name: 'João',
+				password: 'Senh@1234',
+			)
 		teacher = Teacher.create!(name: 'Jane Doe', email: 'jane@gmail.com')
 		course_available =
 			Course.create!(
@@ -44,7 +48,7 @@ describe 'Student view courses on homepage' do
 				enrollment_deadline: 1.month.from_now,
 				teacher: teacher,
 			)
-		login_as user, scope: :user
+		login_as student, scope: :student
 		visit root_path
 		click_on 'HTML'
 
@@ -72,8 +76,12 @@ describe 'Student view courses on homepage' do
 	end
 
 	it 'does not view with enrollment_deadeline over' do
-		user =
-			User.create!(email: 'joão@gmail.com', name: 'João', password: 'Senh@1234')
+		student =
+			Student.create!(
+				email: 'joão@gmail.com',
+				name: 'João',
+				password: 'Senh@1234',
+			)
 
 		teacher = Teacher.create!(name: 'Jane Doe', email: 'jane@gmail.com')
 
@@ -87,7 +95,7 @@ describe 'Student view courses on homepage' do
 				teacher: teacher,
 			)
 
-		login_as user, scope: :user
+		login_as student, scope: :student
 
 		visit course_path(course_unavailable)
 
@@ -96,8 +104,12 @@ describe 'Student view courses on homepage' do
 	end
 
 	it 'and buy a course' do
-		user =
-			User.create!(email: 'joão@gmail.com', name: 'João', password: 'Senh@1234')
+		student =
+			Student.create!(
+				email: 'joão@gmail.com',
+				name: 'João',
+				password: 'Senh@1234',
+			)
 		teacher = Teacher.create!(name: 'Jane Doe', email: 'jane@gmail.com')
 
 		course_available =
@@ -120,7 +132,7 @@ describe 'Student view courses on homepage' do
 				teacher: teacher,
 			)
 
-		login_as user, scope: :user
+		login_as student, scope: :student
 
 		visit course_path(course_available)
 
@@ -138,8 +150,12 @@ describe 'Student view courses on homepage' do
 	end
 
 	it 'and cannot buy course twice' do
-		user =
-			User.create!(email: 'joão@gmail.com', name: 'João', password: 'Senh@1234')
+		student =
+			Student.create!(
+				email: 'joão@gmail.com',
+				name: 'João',
+				password: 'Senh@1234',
+			)
 		teacher = Teacher.create!(name: 'Jane Doe', email: 'jane@gmail.com')
 
 		course_available =
@@ -165,7 +181,7 @@ describe 'Student view courses on homepage' do
 				price: course_available.price,
 			)
 
-		login_as user, scope: :user
+		login_as student, scope: :student
 
 		visit course_path(course_available)
 
@@ -174,8 +190,12 @@ describe 'Student view courses on homepage' do
 	end
 
 	it 'without enrollment cannot view lesson link' do
-		user =
-			User.create!(email: 'joão@gmail.com', name: 'João', password: 'Senh@1234')
+		student =
+			Student.create!(
+				email: 'joão@gmail.com',
+				name: 'João',
+				password: 'Senh@1234',
+			)
 		teacher = Teacher.create!(name: 'Jane Doe', email: 'jane@gmail.com')
 
 		course_available =
@@ -195,7 +215,7 @@ describe 'Student view courses on homepage' do
 			course: course_available,
 		)
 
-		login_as user, scope: :user
+		login_as student, scope: :student
 
 		visit course_path(course_available)
 
