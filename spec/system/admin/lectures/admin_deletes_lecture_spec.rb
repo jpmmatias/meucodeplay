@@ -32,9 +32,6 @@ describe 'Admin deletes lectures' do
 			course: course,
 		)
 
-		enrollment =
-			Enrollment.create!(user: user, course: course, price: course.price)
-
 		login_as user, scope: :user
 
 		visit admin_course_path(course)

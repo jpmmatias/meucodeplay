@@ -22,8 +22,6 @@ describe 'admin updates lectures' do
 				course: course,
 			)
 		user = user_login
-		enrollment =
-			Enrollment.create!(user: user, course: course, price: course.price)
 
 		visit admin_course_path(course)
 

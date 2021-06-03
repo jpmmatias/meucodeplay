@@ -1,8 +1,4 @@
 <h1><%= @course.name %></h1>
-<%if user_signed_in? %>
-<%= link_to "Editar", edit_admin_course_path(@course) %>
-<%= link_to "Deletar", [:admin, @course], method:'delete' %>
-<% end %>
 <dl>
     <dd><%= image_tag @course.banner %></dd>
     <dt>Descrição</dt>
@@ -17,30 +13,29 @@
     <dd><%= @course.code %></dd>
 </dl>
 
-<%if user_signed_in? %>
+<%if student_signed_in? %>
 <% if  @course.enrollment_deadline < Date.today %>
 <p>Praso de inscrição de curso terminou</p>
+<% else%>
+<% unless current_student.courses.include?(@course)%>
+<%= link_to "Comprar", enroll_course_path, method: :post %>
+<% end %>
 <% end %>
 <%else%>
-<p>Faça <%= link_to "login", new_user_session_path %> para comprar esse curso </p>
+<p>Faça <%= link_to "login", new_student_session_path %> para comprar esse curso </p>
 <%end%>
 
-<% if user_signed_in?  %>
+<% if student_signed_in? and current_student.courses.include?(@course) %>
 <h1>Aulas</h1>
-<%= link_to "Cadastrar uma aula", new_admin_course_lecture_path(@course) %>
 <% if @lectures.empty? %>
 <h1>Nenhuma aula disponível</h1>
 <%else%>
 <ul>
     <% @lectures.each do |lecture|%>
     <li>
-        <%= link_to lecture.name, admin_course_lecture_path(@course, lecture) %>
+        <%= link_to lecture.name, course_lecture_path(@course, lecture) %>
         <p><%= lecture.description%></p>
         <p><%= t('lectures.time', count: lecture.time) %> </p>
-        <%if user_signed_in? %>
-        <%= link_to "Deletar", [:admin, @course, lecture], method: :delete %>
-        <%= link_to "Editar", edit_admin_course_lecture_path(@course, lecture) %>
-        <% end %>
         </div>
     </li>
     <%end%>
@@ -49,4 +44,4 @@
 <% end %>
 
 
-<%= link_to "Voltar", admin_courses_path %>
+<%= link_to "Voltar", courses_path %>

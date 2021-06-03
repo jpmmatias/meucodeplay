@@ -48,8 +48,6 @@ describe 'Admin view lectures' do
 			course: other_course,
 		)
 		user = user_login
-		enrollment =
-			Enrollment.create!(user: user, course: course, price: course.price)
 
 		visit root_path
 
@@ -92,9 +90,6 @@ describe 'Admin view lectures' do
 			course: course,
 		)
 
-		enrollment =
-			Enrollment.create!(user: user, course: course, price: course.price)
-
 		visit root_path
 
 		click_on 'Cursos'
@@ -122,8 +117,6 @@ describe 'Admin view lectures' do
 				enrollment_deadline: '22/12/2033',
 				teacher: teacher,
 			)
-		enrollment =
-			Enrollment.create!(user: user, course: course, price: course.price)
 
 		visit root_path
 		click_on 'Cursos'

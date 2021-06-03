@@ -13,8 +13,6 @@ describe 'Admin registers lessons' do
 				teacher: teacher,
 			)
 		user = user_login
-		enrollment =
-			Enrollment.create!(user: user, course: course, price: course.price)
 
 		visit admin_course_path(course)
 
@@ -52,8 +50,6 @@ describe 'Admin registers lessons' do
 				teacher: teacher,
 			)
 		user = user_login
-		enrollment =
-			Enrollment.create!(user: user, course: course, price: course.price)
 
 		visit admin_course_path(course)
 

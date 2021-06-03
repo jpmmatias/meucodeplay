@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
 		comment =
 			lecture.comments.new(
 				content: comment_params[:content],
-				user: current_user,
+				student: current_student,
 			)
 
 		if comment.save

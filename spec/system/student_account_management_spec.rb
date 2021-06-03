@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Account Managment' do
+describe 'Student Account Managment' do
 	context 'registration' do
 		it 'with name, email and password' do
 			visit root_path
@@ -42,7 +42,7 @@ describe 'Account Managment' do
 
 	context 'login' do
 		it 'with email and password' do
-			User.create!(
+			Student.create!(
 				email: 'jane@gmail.com',
 				password: 'Senh@1234',
 				name: 'Jane Doe',
@@ -81,7 +81,7 @@ describe 'Account Managment' do
 	context 'logout' do
 		it 'successfully' do
 			user =
-				User.create!(
+				Student.create!(
 					email: 'jane@gmail.com',
 					name: 'Jane Doe',
 					password: 'Senh@1234',
@@ -108,7 +108,7 @@ describe 'Account Managment' do
 	context 'password recovey' do
 		it 'successfully' do
 			user =
-				User.create!(
+				Student.create!(
 					email: 'jane@gmail.com',
 					name: 'Jane Doe',
 					password: 'Senh@1234',
@@ -120,7 +120,7 @@ describe 'Account Managment' do
 
 			fill_in 'Email', with: 'jane@gmail.com'
 			click_on('Enviar')
-			expect(current_path).to eq(new_user_session_path)
+			expect(current_path).to eq(new_student_session_path)
 			expect(page).to have_text(
 				'Dentro de minutos, você receberá um e-mail com instruções para a troca da sua senha.',
 			)

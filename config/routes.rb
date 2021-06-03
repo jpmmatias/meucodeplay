@@ -14,7 +14,7 @@ Rails
 
 		resources :teachers
 
-		resources :courses, only: [:show] do
+		resources :courses, only: %i[show index] do
 			resources :lectures, only: [:show]
 			post 'enroll', on: :member
 			get 'my_courses', on: :collection

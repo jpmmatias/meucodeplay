@@ -71,7 +71,7 @@ describe 'Student view courses on homepage' do
 		click_on 'HTML'
 
 		expect(page).to_not have_link 'Comprar'
-		expect(page).to have_link('login', href: new_user_session_path)
+		expect(page).to have_link('login', href: new_student_session_path)
 		expect(page).to have_content('Faça login para comprar esse curso')
 	end
 
@@ -150,12 +150,6 @@ describe 'Student view courses on homepage' do
 	end
 
 	it 'and cannot buy course twice' do
-		student =
-			Student.create!(
-				email: 'joão@gmail.com',
-				name: 'João',
-				password: 'Senh@1234',
-			)
 		teacher = Teacher.create!(name: 'Jane Doe', email: 'jane@gmail.com')
 
 		course_available =
@@ -174,14 +168,13 @@ describe 'Student view courses on homepage' do
 			time: 10,
 			course: course_available,
 		)
+		student = student_login
 		enrollment =
 			Enrollment.create!(
-				user: user,
+				student: student,
 				course: course_available,
 				price: course_available.price,
 			)
-
-		login_as student, scope: :student
 
 		visit course_path(course_available)
 
@@ -190,12 +183,7 @@ describe 'Student view courses on homepage' do
 	end
 
 	it 'without enrollment cannot view lesson link' do
-		student =
-			Student.create!(
-				email: 'joão@gmail.com',
-				name: 'João',
-				password: 'Senh@1234',
-			)
+		student = student_login
 		teacher = Teacher.create!(name: 'Jane Doe', email: 'jane@gmail.com')
 
 		course_available =
@@ -214,8 +202,6 @@ describe 'Student view courses on homepage' do
 			time: 10,
 			course: course_available,
 		)
-
-		login_as student, scope: :student
 
 		visit course_path(course_available)
 

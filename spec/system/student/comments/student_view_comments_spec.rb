@@ -1,8 +1,6 @@
 require 'rails_helper'
 describe 'Student view comments' do
 	it 'sucessfully' do
-		user =
-			User.create!(email: 'joão@gmail.com', name: 'João', password: 'Senh@1234')
 		teacher = Teacher.create!(name: 'Jane Doe', email: 'jane@gmail.com')
 		course =
 			Course.create!(
@@ -22,14 +20,20 @@ describe 'Student view comments' do
 				content: 'Uma aula de ruby',
 				course: course,
 			)
-
+		student = student_login
 		enrollment =
-			Enrollment.create!(user: user, course: course, price: course.price)
+			Enrollment.create!(student: student, course: course, price: course.price)
 
-		login_as user, scope: :user
-
-		Comment.create!(content: 'Aula muito boa!', lecture: lecture, user: user)
-		Comment.create!(content: 'Aula sensacional!', lecture: lecture, user: user)
+		Comment.create!(
+			content: 'Aula muito boa!',
+			lecture: lecture,
+			student: student,
+		)
+		Comment.create!(
+			content: 'Aula sensacional!',
+			lecture: lecture,
+			student: student,
+		)
 
 		visit course_lecture_path(course, lecture)
 
@@ -39,8 +43,6 @@ describe 'Student view comments' do
 	end
 
 	it "and don't have comments" do
-		user =
-			User.create!(email: 'joão@gmail.com', name: 'João', password: 'Senh@1234')
 		teacher = Teacher.create!(name: 'Jane Doe', email: 'jane@gmail.com')
 		course =
 			Course.create!(
@@ -60,10 +62,9 @@ describe 'Student view comments' do
 				content: 'Uma aula de ruby',
 				course: course,
 			)
-
+		student = student_login
 		enrollment =
-			Enrollment.create!(user: user, course: course, price: course.price)
-		login_as user, scope: :user
+			Enrollment.create!(student: student, course: course, price: course.price)
 		visit course_lecture_path(course, lecture)
 		expect(page).to have_text('Comentários')
 		expect(page).to have_text('Sem comentários ainda')
