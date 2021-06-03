@@ -4,7 +4,9 @@
 <%end%>
 
 <% @categories.each do |category| %>
-<h1><%= link_to category.name, admin_category_path(category) %></h1>
+<h1><%=  category.name %></h1>
+<p><%= link_to "Editar", edit_admin_category_path(category) %></p>
+<p> <%= link_to "Deletar", admin_category_path(category) , method: :delete %> </p>
 <%end%>
 
 <%= link_to "Voltar", root_path %>

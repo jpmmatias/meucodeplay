@@ -113,7 +113,7 @@ describe 'Admin view courses' do
 	it 'must be logged in to view courses button' do
 		visit root_path
 
-		expect(page).to_not have_link('Cursos')
+		expect(page).to_not have_link('Cursos', href: admin_courses_path)
 	end
 
 	it 'must be logged in to view courses through route' do

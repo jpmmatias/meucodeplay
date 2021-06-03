@@ -36,7 +36,7 @@ describe 'Admin registers categories' do
 
 		click_on 'Criar categoria'
 
-		expect(page).to have_content('não pode ficar em branco', count: 1)
+		expect(page).to have_content('não pode ficar em branco')
 	end
 
 	it 'and code must be unique' do
@@ -50,5 +50,11 @@ describe 'Admin registers categories' do
 		click_on 'Criar categoria'
 
 		expect(page).to have_content('já está em uso')
+	end
+
+	it 'must be logged in to view categories button' do
+		visit root_path
+
+		expect(page).to_not have_link('Categorias', href: admin_categories_path)
 	end
 end
