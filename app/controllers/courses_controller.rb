@@ -1,6 +1,7 @@
 class CoursesController < ApplicationController
 	before_action :set_course, only: %i[show edit update destroy enroll]
 	def index
+		@categories = Categorie.all
 		@courses = Course.all
 	end
 	def show

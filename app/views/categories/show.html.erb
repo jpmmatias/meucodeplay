@@ -4,10 +4,11 @@
     <li><%= link_to categorie.name, categorie %></li>
     <% end %>
 </ul>
+
 <% if @courses.blank? %>
 <h1>Nenhum curso disponível</h1>
 <%end%>
-
+<%= @categorie.name %>
 <% @courses.each do |course| %>
 <h1><%= link_to course.name, course_path(course) %></h1>
 <h2><%= course.teacher.name%></h2>

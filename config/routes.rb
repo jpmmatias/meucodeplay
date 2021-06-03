@@ -22,6 +22,8 @@ Rails
 			#post 'favorite', on: member
 		end
 
+		resources :categories, only: [:show]
+
 		resources :lectures, only: [] do
 			resources :comments, only: [:create]
 		end

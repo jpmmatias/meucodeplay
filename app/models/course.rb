@@ -6,6 +6,7 @@ class Course < ApplicationRecord
 
 	belongs_to :teacher
 	has_many :lectures, dependent: :destroy
+	belongs_to :categorie, optional: true
 	has_one_attached :banner
 
 	validates :name, :code, :price, :teacher_id, presence: true
