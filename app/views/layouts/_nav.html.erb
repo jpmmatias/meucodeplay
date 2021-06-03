@@ -11,10 +11,10 @@
             <li class="border-t md:border-none">
                 <%= link_to "Home",  root_url %>
             </li>
-            <% if student_signed_in? %>
             <li class="border-t md:border-none">
                 <%= link_to "Cursos",  courses_path %>
             </li>
+            <% if student_signed_in? %>
             <li> Olá <span><%= current_student.name %></span> </li>
             <li class="border-t md:border-none">
                 <%= link_to "Sair", destroy_student_session_path, method: :delete %>

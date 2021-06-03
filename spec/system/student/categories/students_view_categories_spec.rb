@@ -61,4 +61,11 @@ describe 'Student view categories in course page' do
 		expect(page).to have_link('Elixir')
 		expect(page).not_to have_link('C++')
 	end
+
+	it "don't have courses on categorie" do
+		Categorie.create!(name: 'Desenvolvimento Web')
+		visit courses_path
+		click_on 'Desenvolvimento Web'
+		expect(page).to have_text 'Categoria sem cursos'
+	end
 end

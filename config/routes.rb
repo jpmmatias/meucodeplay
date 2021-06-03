@@ -10,6 +10,7 @@ Rails
 			resources :courses do
 				resources :lectures
 			end
+			resources :categories, only: %i[show index new create]
 		end
 
 		resources :teachers

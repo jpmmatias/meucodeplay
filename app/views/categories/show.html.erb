@@ -9,6 +9,9 @@
 <h1>Nenhum curso disponível</h1>
 <%end%>
 <%= @categorie.name %>
+<% if @courses.empty? %>
+<h1>Categoria sem cursos</h1>
+<% else%>
 <% @courses.each do |course| %>
 <h1><%= link_to course.name, course_path(course) %></h1>
 <h2><%= course.teacher.name%></h2>
@@ -16,5 +19,7 @@
 <p><%= course.description%></p>
 <p><%= number_to_currency course.price %></p>
 <%end%>
+<% end %>
+
 
 <%= link_to "Voltar", root_path %>

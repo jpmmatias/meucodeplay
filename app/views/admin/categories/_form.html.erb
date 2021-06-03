@@ -1,0 +1,14 @@
+<%= form_with model:[:admin, category] do |f| %>
+<div>
+    <%= f.label :name , 'Nome' %>
+    <%= f.text_field :name%>
+    <%if category.errors.full_messages_for(:name).any? %>
+    <ul>
+        <% category.errors.full_messages_for(:name).each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+    </ul>
+    <%end%>
+</div>
+<%= f.submit button_text %>
+<% end %>

@@ -17,6 +17,9 @@
             <li class='border-t md:border-none'>
                 <%= link_to "Professores", teachers_url %>
             </li>
+            <li class='border-t md:border-none'>
+                <%= link_to "Categorias", admin_categories_url %>
+            </li>
             <% if user_signed_in? %>
             <li> Olá <span><%= current_user.name %></span> </li>
             <%= link_to "Sair", destroy_user_session_path, method: :delete %>
