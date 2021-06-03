@@ -13,6 +13,7 @@ Rails
 		end
 
 		resources :teachers
+
 		resources :courses, only: [:show] do
 			resources :lectures, only: [:show]
 			post 'enroll', on: :member
@@ -20,7 +21,16 @@ Rails
 			#get 'search', on: :collection
 			#post 'favorite', on: member
 		end
+
 		resources :lectures, only: [] do
 			resources :comments, only: [:create]
+		end
+
+		namespace :api do
+			namespace :v1 do
+				resources :courses,
+				          only: %i[index show create update destroy],
+				          param: :code
+			end
 		end
 	end
