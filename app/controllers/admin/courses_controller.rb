@@ -11,6 +11,7 @@ class Admin::CoursesController < Admin::AdminController
 
 	def new
 		@course = Course.new
+		@categories = Categorie.all
 		@teachers = Teacher.all
 	end
 
@@ -25,6 +26,7 @@ class Admin::CoursesController < Admin::AdminController
 	end
 
 	def edit
+		@categories = Categorie.all
 		@teachers = Teacher.all
 	end
 
@@ -60,6 +62,16 @@ class Admin::CoursesController < Admin::AdminController
 	def course_params
 		params
 			.require(:course)
-			.permit(%i[name code description price enrollment_deadline teacher_id])
+			.permit(
+				%i[
+					name
+					code
+					description
+					price
+					enrollment_deadline
+					teacher_id
+					categorie_id
+				],
+			)
 	end
 end

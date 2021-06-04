@@ -69,4 +69,27 @@ describe 'admin updates courses' do
 
 		expect(current_path).to eq(new_user_session_path)
 	end
+
+	it 'edit category of the course' do
+		user_login
+		teacher = Teacher.create!(name: 'Jane Doe', email: 'jane@gmail.com')
+		category = Categorie.create!(name: 'OOP')
+		categoy2 = Categorie.create!(name: 'TDD')
+
+		@course =
+			Course.create!(
+				name: 'Ruby',
+				description: 'Um curso de Ruby',
+				code: 'RUBYBASIC',
+				price: 10,
+				enrollment_deadline: '22/12/2033',
+				teacher: teacher,
+				categorie: category,
+			)
+		visit edit_admin_course_path(@course)
+		select categoy2.name, from: 'Categoria'
+		click_on 'Salvar'
+
+		expect(page).to have_content('TDD')
+	end
 end

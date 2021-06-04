@@ -26,6 +26,16 @@ class CoursesController < ApplicationController
 	def course_params
 		params
 			.require(:course)
-			.permit(%i[name code description price enrollment_deadline teacher_id])
+			.permit(
+				%i[
+					name
+					code
+					description
+					price
+					enrollment_deadline
+					teacher_id
+					categorie_id
+				],
+			)
 	end
 end

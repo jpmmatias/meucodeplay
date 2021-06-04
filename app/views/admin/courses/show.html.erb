@@ -15,6 +15,10 @@
     <dd><%= I18n.localize @course.enrollment_deadline %></dd>
     <dt>Código</dt>
     <dd><%= @course.code %></dd>
+    <% unless @course.categorie.nil? %>
+    <dt>Categoria</dt>
+    <dd><%= @course.categorie.name %></dd>
+    <% end %>
 </dl>
 
 <%if user_signed_in? %>

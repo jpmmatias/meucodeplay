@@ -63,5 +63,19 @@
     </ul>
     <%end%>
 </div>
+<% unless categories.nil?%>
+<div>
+    <%= f.label :categorie_id %>
+    <%= f.collection_select :categorie_id, categories, :id, :name %>
+    <%if course.errors.full_messages_for(:categorie_id).any? %>
+    <ul>
+        <% course.errors.full_messages_for(:categorie_id).each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+    </ul>
+    <%end%>
+</div>
+<% end %>
+
 <%= f.submit button_text %>
 <% end %>

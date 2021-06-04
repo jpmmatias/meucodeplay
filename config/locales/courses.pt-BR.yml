@@ -22,7 +22,12 @@ pt-BR:
         teacher_id:
           one: 'Professor(a)'
           other: 'Professores(as)'
-
         teacher:
           one: 'Professor(a)'
           other: 'Professores(as)'
+        categorie_id:
+          one: 'Categoria'
+          other: 'Categorias'
+        categorie:
+          one: 'Categoria'
+          other: 'Categorias'

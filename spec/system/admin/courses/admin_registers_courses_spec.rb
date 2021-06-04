@@ -73,4 +73,26 @@ describe 'Admin registers courses' do
 
 		expect(current_path).to eq(new_user_session_path)
 	end
+
+	it 'course can have a category' do
+		user_login
+		teacher = Teacher.create!(name: 'Jane Doe', email: 'jane@gmail.com')
+		categoy = Categorie.create!(name: 'OOP')
+
+		visit admin_courses_path
+		click_on 'Registrar um Curso'
+
+		fill_in 'Nome', with: 'Ruby on Rails'
+		fill_in 'Descrição', with: 'Um curso de Ruby on Rails'
+		fill_in 'Código', with: 'RUBYONRAILS'
+		fill_in 'Preço', with: '30'
+		fill_in 'Data limite de matrícula', with: '22/12/2033'
+		attach_file 'Banner', Rails.root.join('spec/fixtures/course.jpg')
+		select "#{teacher.name} - #{teacher.email}", from: 'Professor(a)'
+		select categoy.name, from: 'Categoria'
+		click_on 'Criar curso'
+
+		expect(current_path).to eq(admin_course_path(Course.last))
+		expect(page).to have_content('OOP')
+	end
 end
