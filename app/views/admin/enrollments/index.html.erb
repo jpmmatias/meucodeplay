@@ -1,0 +1,15 @@
+<h1>Todas as compras</h1>
+<% if @enrollments.empty? %>
+<h1>Nenhuma compra efetuada</h1>
+<% else %>
+<ul>
+    <% @enrollments.each do |enrollment|%>
+    <li>
+        <p>Curso: <%= enrollment.course.name %></p>
+        <p>Aluno: <%= enrollment.student.name %></p>
+        <p>Preço: <%= number_to_currency enrollment.course.price %></p>
+    </li>
+    <% end %>
+</ul>
+<% end %>
+<%= link_to "Voltar", root_path %>

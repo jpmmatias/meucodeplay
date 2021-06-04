@@ -11,6 +11,7 @@ Rails
 				resources :lectures
 			end
 			resources :categories, only: %i[index new create edit update destroy]
+			resources :enrollments, only: [:index]
 		end
 
 		resources :teachers
