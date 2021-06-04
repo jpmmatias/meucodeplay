@@ -121,9 +121,9 @@ describe 'Courses Api' do
 			expect(parsed_body['errors']).to include('Professor(a) é obrigatório(a)')
 		end
 
-		it 'and param is missing' do
+		it 'and param error' do
 			post '/api/v1/courses'
-			expect(response.status).to eq(400)
+			expect(response.status).to eq(412)
 			expect(parsed_body['error']).to include("Param 'course' faltando")
 		end
 	end
@@ -189,7 +189,7 @@ describe 'Courses Api' do
 				'Preço não pode ficar em branco',
 			)
 		end
-		it 'and param is missing' do
+		it 'and param error' do
 			teacher = Teacher.create!(name: 'Jane Doe', email: 'jane@gmail.com')
 			course =
 				Course.create!(
@@ -201,7 +201,7 @@ describe 'Courses Api' do
 					teacher: teacher,
 				)
 			put '/api/v1/courses/RUBYBASIC', params: {}
-			expect(response.status).to eq(400)
+			expect(response.status).to eq(412)
 			expect(parsed_body['error']).to include("Param 'course' faltando")
 		end
 
