@@ -62,7 +62,7 @@ class Api::V1::CoursesController < ActionController::API
 	private
 
 	rescue_from ActionController::ParameterMissing do |e|
-		render json: { error: "Param 'course' faltando" }, status: :bad_request
+		render json: { error: "Param 'course' faltando" }, status: 412
 	end
 
 	def set_course
